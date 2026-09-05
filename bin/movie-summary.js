@@ -122,12 +122,57 @@ function printQueue() {
   }
 }
 
+const ACTIVE_STATUSES = ["ANALYZING", "SCRIPTING", "VOICE_GENERATING", "EDITING", "UPLOADING"];
+
 function printStatus() {
   const jobs = listJobs();
   const byStatus = {};
   for (const j of jobs) byStatus[j.status] = (byStatus[j.status] || 0) + 1;
-  console.log("\nEstado dos jobs:\n");
+
+  console.log("\n=== ESTADO GERAL ===\n");
   for (const [status, count] of Object.entries(byStatus)) console.log(`  ${status}: ${count}`);
+
+  const active = jobs.filter((j) => ACTIVE_STATUSES.includes(j.status));
+  console.log("\n=== A PROCESSAR AGORA ===\n");
+  if (active.length === 0) console.log("  (nenhum job em processamento)");
+  for (const j of active) {
+    console.log(`  ${j.slug} — ${j.status} (${j.step ?? "-"}) — tentativa ${j.attempts + 1}/${j.max_attempts}`);
+  }
+
+  const pending = jobs.filter((j) => j.status === "PENDING");
+  console.log(`\n=== NA FILA (PENDING) === (${pending.length})\n`);
+  for (const j of pending) console.log(`  ${j.slug}`);
+
+  const failed = jobs.filter((j) => j.status === "FAILED");
+  console.log(`\n=== ERROS (FAILED) === (${failed.length})\n`);
+  for (const j of failed) console.log(`  ${j.slug}: ${j.last_error ?? "(sem detalhe)"}`);
+
+  const ready = jobs.filter((j) => j.status === "READY");
+  console.log(`\n=== PRONTOS PARA PUBLICAR (READY) === (${ready.length})\n`);
+  for (const j of ready) console.log(`  ${j.slug}`);
+
+  const scheduledRows = db.prepare(
+    `SELECT jobs.id as job_id, movies.slug, publications.publish_at, publications.youtube_video_id
+     FROM publications JOIN jobs ON jobs.id = publications.job_id JOIN movies ON movies.id = jobs.movie_id
+     WHERE publications.status = 'SCHEDULED' ORDER BY publications.publish_at ASC`
+  ).all();
+  console.log(`\n=== AGENDADOS NO YOUTUBE (SCHEDULED) === (${scheduledRows.length})\n`);
+  for (const r of scheduledRows) console.log(`  ${r.slug} → ${r.publish_at} (videoId=${r.youtube_video_id})`);
+
+  const publishedRows = db.prepare(
+    `SELECT movies.slug, publications.publish_at, publications.youtube_video_id
+     FROM publications JOIN jobs ON jobs.id = publications.job_id JOIN movies ON movies.id = jobs.movie_id
+     WHERE publications.status = 'PUBLISHED' ORDER BY publications.publish_at DESC LIMIT 10`
+  ).all();
+  console.log(`\n=== PUBLICADOS RECENTEMENTE (PUBLISHED) === (${publishedRows.length} mostrados)\n`);
+  for (const r of publishedRows) console.log(`  ${r.slug} → ${r.publish_at} (videoId=${r.youtube_video_id})`);
+
+  try {
+    const nextSlots = nextAvailableSlots(2);
+    console.log("\n=== PRÓXIMOS HORÁRIOS LIVRES ===\n");
+    for (const s of nextSlots) console.log(`  ${s}`);
+  } catch { /* scheduler sem slots — não bloqueia o resto do --status */ }
+  console.log("");
 }
 
 function printSchedule() {

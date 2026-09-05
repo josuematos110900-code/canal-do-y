@@ -73,9 +73,19 @@ def main():
 
     # 3. Formato de saída (dimensões + crop inteligente simples: centro).
     if variant == "9:16":
-        vf_scale_crop = "scale=-1:1920,crop=1080:1920"
+        # Preenche 1080x1920 fazendo crop central depois de escalar para cobrir
+        # o alvo por inteiro (increase), em vez de deformar a imagem.
+        vf_scale_crop = (
+            "scale=1080:1920:force_original_aspect_ratio=increase,"
+            "crop=1080:1920"
+        )
     else:
-        vf_scale_crop = "scale=1920:-2,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=black"
+        # Encaixa a imagem inteira em 1920x1080 (decrease) e completa com
+        # barras pretas — nunca deforma nem corta o enquadramento original.
+        vf_scale_crop = (
+            "scale=1920:1080:force_original_aspect_ratio=decrease,"
+            "pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=black"
+        )
 
     with_audio = temp_dir / "with_audio.mp4"
     if narration and narration != "none" and Path(narration).exists():

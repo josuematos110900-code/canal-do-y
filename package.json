@@ -10,6 +10,13 @@
   "scripts": {
     "movie-summary": "node ./bin/movie-summary.js",
     "check-env": "node ./bin/movie-summary.js --check-env",
+    "autonomous": "node ./bin/movie-summary.js --autonomous",
+    "worker": "node ./bin/movie-summary.js --autonomous",
+    "watch": "node ./bin/movie-summary.js --watch",
+    "status": "node ./bin/movie-summary.js --status",
+    "queue": "node ./bin/movie-summary.js --queue",
+    "retry": "node ./bin/movie-summary.js --retry",
+    "report": "node ./bin/movie-summary.js --report",
     "test": "node ./scripts/selftest.js"
   },
   "engines": {

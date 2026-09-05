@@ -127,6 +127,9 @@ hora marcada.
 
 ```bash
 node bin/movie-summary.js --autonomous
+# ou, equivalente:
+npm run autonomous
+npm run worker
 ```
 
 Isto liga, no mesmo processo:
@@ -142,17 +145,8 @@ A partir daqui, o único trabalho manual é **colocar um vídeo autorizado em
 `input/movies/`**.
 
 **Importante**: `--autonomous` é um processo Node que precisa de ficar
-sempre ligado. Numa máquina/servidor próprio, corre-o com um supervisor:
-
-```bash
-# com pm2 (recomendado)
-npm i -g pm2
-pm2 start bin/movie-summary.js --name movie-summary -- --autonomous
-pm2 save
-
-# ou com systemd — cria um serviço que corre:
-#   node /caminho/movie-summary/bin/movie-summary.js --autonomous
-```
+sempre ligado. Numa máquina/servidor próprio, corre-o com um supervisor —
+ver secção **9. Produção 24/7** abaixo (`ecosystem.config.js` incluído).
 
 > Numa sessão de Claude Code na cloud (container efémero), este processo
 > morre quando a sessão termina — não é o sítio certo para o correr 24/7.
@@ -223,6 +217,65 @@ movie-summary/
 | `--publish` ou `--autonomous` falham com "YouTube não configurado" | falta correr `get-refresh-token.js` e preencher o `.env` |
 | `ffmpeg: command not found` | instalar ffmpeg no sistema |
 | Um vídeo nunca sai de `PENDING` | confere `--status`/logs em `logs/pipeline.log` — o watcher só avança quando o tamanho do ficheiro pára de mudar |
+
+## 9. Produção 24/7
+
+### Recuperação sem retrabalho (checkpointing)
+
+Cada etapa do pipeline (`src/pipeline/run.js`) só corre se o seu ficheiro de
+saída ainda não existir. Se um job falhar (ex: YouTube em baixo na etapa
+19), o retry seguinte **salta** metadata/áudio/transcrição/cenas/história/
+roteiro/narração já concluídos e vai directo à etapa que falhou — nunca
+volta a pagar transcrição ou TTS por causa de um erro mais à frente.
+
+### PM2 (recomendado)
+
+```bash
+npm i -g pm2
+pm2 start ecosystem.config.js
+pm2 save
+pm2 startup   # opcional: o PM2 volta a arrancar sozinho depois de um reboot
+```
+
+Ver estado e logs:
+
+```bash
+pm2 status
+pm2 logs movie-summary-worker
+node bin/movie-summary.js --status   # estado do domínio (fila, agendados, erros)
+```
+
+`ecosystem.config.js` corre um único processo (`--autonomous`) que já
+embebe watcher + fila + scheduler + publicador — ver o comentário no
+próprio ficheiro para a justificação (evita duas instâncias a escrever na
+mesma SQLite ao mesmo tempo).
+
+### Alternativa: systemd
+
+```ini
+# /etc/systemd/system/movie-summary.service
+[Unit]
+Description=Movie Summary — worker autónomo
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/caminho/para/movie-summary
+ExecStart=/usr/bin/node /caminho/para/movie-summary/bin/movie-summary.js --autonomous
+Restart=on-failure
+RestartSec=10
+EnvironmentFile=/caminho/para/movie-summary/.env
+User=movie-summary
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now movie-summary
+sudo journalctl -u movie-summary -f
+```
 
 ## Roadmap (fora do MVP actual)
 
