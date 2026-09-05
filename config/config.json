@@ -1,0 +1,22 @@
+{
+  "language": "pt-PT",
+  "short_duration_min": 30,
+  "short_duration_max": 60,
+  "medium_duration_min": 120,
+  "medium_duration_max": 300,
+  "full_duration_min": 300,
+  "full_duration_max": 900,
+  "min_event_importance": 70,
+  "video_width": 1920,
+  "video_height": 1080,
+  "short_width": 1080,
+  "short_height": 1920,
+  "video_codec": "libx264",
+  "audio_codec": "aac",
+  "crf": 20,
+  "fps_default": 24,
+  "youtube_privacy": "private",
+  "whisper_model": "small",
+  "scene_detect_threshold": 0.35,
+  "max_line_chars_subtitle": 42
+}

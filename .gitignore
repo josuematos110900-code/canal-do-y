@@ -1,0 +1,47 @@
+# Segredos
+.env
+*.key
+*.pem
+credentials.json
+token.json
+client_secret*.json
+cookies.txt
+
+# Dependências
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Media de entrada e trabalho (nunca versionar vídeos/áudios pesados)
+input/movies/*
+!input/movies/.gitkeep
+input/audio/*
+!input/audio/.gitkeep
+temp/*
+!temp/.gitkeep
+
+# Saídas geradas (recriáveis a partir do input — não versionar binários)
+output/videos/*
+!output/videos/.gitkeep
+output/shorts/*
+!output/shorts/.gitkeep
+output/thumbnails/*
+!output/thumbnails/.gitkeep
+
+output/audio/*
+!output/audio/.gitkeep
+
+# Base de dados local (fila/jobs) — estado de runtime, não código
+data/*
+!data/.gitkeep
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

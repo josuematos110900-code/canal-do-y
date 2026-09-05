@@ -1,0 +1,24 @@
+{
+  "name": "movie-summary",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pipeline de automação para transformar vídeos longos (filmes/documentários autorizados) em vídeos de resumo narrado para YouTube.",
+  "type": "module",
+  "bin": {
+    "movie-summary": "./bin/movie-summary.js"
+  },
+  "scripts": {
+    "movie-summary": "node ./bin/movie-summary.js",
+    "check-env": "node ./bin/movie-summary.js --check-env",
+    "test": "node ./scripts/selftest.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "dotenv": "^17.4.2",
+    "googleapis": "^178.0.0"
+  },
+  "license": "UNLICENSED"
+}

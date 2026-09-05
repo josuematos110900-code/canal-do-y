@@ -1,0 +1,10 @@
+# Dependências Python opcionais.
+# Nenhuma é estritamente obrigatória para o MVP (metadata, áudio e deteção de
+# cenas usam só ffmpeg/ffprobe via subprocess) — mas sem faster-whisper e sem
+# OPENAI_API_KEY a etapa de transcrição falha por falta de motor disponível.
+
+# Transcrição local, offline, sem custo por chamada (recomendado):
+faster-whisper>=1.0.0
+
+# Se preferires não instalar um modelo local, define OPENAI_API_KEY no .env
+# e a transcrição usa a OpenAI Whisper API — não precisas deste pacote.

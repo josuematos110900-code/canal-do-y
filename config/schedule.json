@@ -1,0 +1,6 @@
+{
+  "timezone": "Africa/Luanda",
+  "posts_per_week": 2,
+  "days": ["TUESDAY", "FRIDAY"],
+  "publish_time": "18:00"
+}
