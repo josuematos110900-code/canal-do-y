@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_padding">
+
+            <TextView
+                style="@style/Text.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_notifications" />
+
+            <LinearLayout
+                style="@style/Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/settings_notifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="@string/settings_notifications_switch"
+                    android:textColor="@color/text_primary"
+                    android:thumb="@drawable/bg_switch_thumb"
+                    android:track="@drawable/bg_switch_track" />
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_notifications_hint" />
+
+                <TextView
+                    style="@style/Text.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_refresh_interval" />
+
+                <RadioGroup
+                    android:id="@+id/settings_interval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/settings_interval_15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/ks_neon"
+                        android:text="@string/settings_interval_15"
+                        android:textColor="@color/text_secondary" />
+
+                    <RadioButton
+                        android:id="@+id/settings_interval_30"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/ks_neon"
+                        android:text="@string/settings_interval_30"
+                        android:textColor="@color/text_secondary" />
+
+                    <RadioButton
+                        android:id="@+id/settings_interval_60"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/ks_neon"
+                        android:text="@string/settings_interval_60"
+                        android:textColor="@color/text_secondary" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:text="@string/settings_security" />
+
+            <LinearLayout
+                style="@style/Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/settings_new_password" />
+
+                <EditText
+                    android:id="@+id/settings_new_password"
+                    style="@style/Input"
+                    android:autofillHints="newPassword"
+                    android:hint="@string/hint_new_password"
+                    android:inputType="textPassword" />
+
+                <TextView
+                    style="@style/Text.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_password_confirm" />
+
+                <EditText
+                    android:id="@+id/settings_new_password_confirm"
+                    style="@style/Input"
+                    android:autofillHints="newPassword"
+                    android:hint="@string/hint_password_confirm"
+                    android:inputType="textPassword" />
+
+                <Button
+                    android:id="@+id/settings_change_password"
+                    style="@style/Button.Primary"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/settings_change_password" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:text="@string/settings_data" />
+
+            <LinearLayout
+                style="@style/Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/settings_clear_player"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_gamepad"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/settings_clear_player" />
+
+                <TextView
+                    android:id="@+id/settings_clear_cache"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_delete"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/settings_clear_cache" />
+
+                <TextView
+                    android:id="@+id/settings_terms"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_document"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/terms_title" />
+
+                <TextView
+                    android:id="@+id/settings_privacy"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_shield"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/privacy_title" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/settings_delete_account"
+                style="@style/Button.Danger"
+                android:layout_marginTop="22dp"
+                android:text="@string/settings_delete_account" />
+
+            <TextView
+                android:id="@+id/settings_version"
+                style="@style/Text.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

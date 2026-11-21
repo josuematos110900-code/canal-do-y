@@ -1,0 +1,23 @@
+// Ficheiro de topo. O CodeAssist usa o seu próprio sistema de compilação e lê
+// sobretudo app/build.gradle; este ficheiro mantém o projecto compatível com
+// Gradle/Android Studio caso queira compilar num computador.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

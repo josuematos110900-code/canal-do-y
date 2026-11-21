@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Não fazer backup da sessão (tokens) para a cloud -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="ketshop_session.xml" />
+    <exclude domain="cache" path="." />
+</full-backup-content>

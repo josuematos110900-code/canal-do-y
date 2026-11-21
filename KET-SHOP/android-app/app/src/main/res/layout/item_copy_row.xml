@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/copy_row_label"
+            style="@style/Text.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/copy_row_value"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textIsSelectable="true"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/copy_row_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_ripple_circle"
+        android:contentDescription="@string/action_copy"
+        android:src="@drawable/ic_copy"
+        android:tint="@color/ks_neon_light" />
+</LinearLayout>

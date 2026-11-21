@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header_gradient"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <TextView
+                    android:id="@+id/profile_avatar"
+                    android:layout_width="84dp"
+                    android:layout_height="84dp"
+                    android:background="@drawable/bg_circle_neon"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    style="@style/Text.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:id="@+id/profile_email"
+                    style="@style/Text.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profile_stat_total"
+                            style="@style/Text.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dash" />
+
+                        <TextView
+                            style="@style/Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_stat_total"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profile_stat_active"
+                            style="@style/Text.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dash" />
+
+                        <TextView
+                            style="@style/Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_stat_active"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profile_stat_done"
+                            style="@style/Text.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dash" />
+
+                        <TextView
+                            style="@style/Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_stat_done"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Text.Subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_edit" />
+
+                <TextView
+                    style="@style/Text.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_full_name" />
+
+                <EditText
+                    android:id="@+id/profile_edit_name"
+                    style="@style/Input"
+                    android:hint="@string/hint_full_name"
+                    android:inputType="textPersonName|textCapWords" />
+
+                <TextView
+                    style="@style/Text.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_phone" />
+
+                <EditText
+                    android:id="@+id/profile_edit_phone"
+                    style="@style/Input"
+                    android:hint="@string/hint_phone"
+                    android:inputType="phone" />
+
+                <Button
+                    android:id="@+id/profile_save"
+                    style="@style/Button.Primary"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/action_save" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/profile_menu_orders"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_receipt"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/profile_menu_orders" />
+
+                <TextView
+                    android:id="@+id/profile_menu_notifications"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_bell"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/nav_notifications" />
+
+                <TextView
+                    android:id="@+id/profile_menu_support"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_support"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/support_title" />
+
+                <TextView
+                    android:id="@+id/profile_menu_settings"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_settings"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/settings_title" />
+
+                <TextView
+                    android:id="@+id/profile_menu_terms"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_document"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/terms_title" />
+
+                <TextView
+                    android:id="@+id/profile_menu_privacy"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_shield"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/privacy_title" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/profile_logout"
+                style="@style/Button.Danger"
+                android:layout_marginTop="18dp"
+                android:text="@string/profile_logout" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/view_bottom_nav" />
+</FrameLayout>

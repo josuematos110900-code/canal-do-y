@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/view_toolbar" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingEnd="@dimen/screen_padding"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/history_filter_all"
+                    style="@style/Chip"
+                    android:text="@string/filter_all" />
+
+                <TextView
+                    android:id="@+id/history_filter_active"
+                    style="@style/Chip"
+                    android:text="@string/filter_active" />
+
+                <TextView
+                    android:id="@+id/history_filter_completed"
+                    style="@style/Chip"
+                    android:text="@string/filter_completed" />
+
+                <TextView
+                    android:id="@+id/history_filter_cancelled"
+                    style="@style/Chip"
+                    android:text="@string/filter_cancelled" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <include layout="@layout/view_state" />
+
+        <ListView
+            android:id="@+id/history_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:clipToPadding="false"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:layoutAnimation="@anim/layout_list"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingEnd="@dimen/screen_padding"
+            android:paddingBottom="96dp"
+            android:scrollbarStyle="outsideOverlay" />
+    </LinearLayout>
+
+    <include layout="@layout/view_bottom_nav" />
+</FrameLayout>

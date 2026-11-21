@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_padding">
+
+            <TextView
+                style="@style/Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/support_heading" />
+
+            <TextView
+                android:id="@+id/support_order_ref"
+                style="@style/Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/support_subtitle" />
+
+            <ProgressBar
+                android:id="@+id/support_progress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:indeterminateTint="@color/ks_neon" />
+
+            <TextView
+                android:id="@+id/support_not_configured"
+                style="@style/Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_warning_box"
+                android:padding="14dp"
+                android:text="@string/support_not_configured"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/support_contacts"
+                style="@style/Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="6dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/support_whatsapp"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_chat"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:text="@string/support_whatsapp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/support_email"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/support_phone"
+                    style="@style/MenuRow"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/support_hours"
+                    style="@style/MenuRow"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_time"
+                    android:drawableTint="@color/ks_neon_light"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/support_faq" />
+
+            <LinearLayout
+                android:id="@+id/support_faq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

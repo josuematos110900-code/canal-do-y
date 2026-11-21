@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Configurações · KET SHOP Admin</title>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content">
+        <form class="card" id="set-form" novalidate>
+          <div class="card-header"><h2>Loja e suporte</h2></div>
+          <div class="form-grid">
+            <div><label for="s-store_name">Nome da loja</label><input id="s-store_name" maxlength="60"></div>
+            <div><label for="s-support_whatsapp">WhatsApp de suporte</label><input id="s-support_whatsapp" placeholder="244XXXXXXXXX (só dígitos)"></div>
+            <div><label for="s-support_email">E-mail de suporte</label><input id="s-support_email" type="email"></div>
+            <div><label for="s-support_phone">Telefone de suporte</label><input id="s-support_phone"></div>
+            <div><label for="s-support_hours">Horário de atendimento</label><input id="s-support_hours" placeholder="Ex.: Seg–Sáb, 08h–20h"></div>
+            <div><label for="s-min_android_version">versionCode mínimo da app</label><input id="s-min_android_version" type="number" min="1" step="1"></div>
+          </div>
+          <label for="s-announcement">Aviso na Home da app (vazio = sem aviso)</label>
+          <input id="s-announcement" maxlength="300">
+          <label class="check"><input type="checkbox" id="s-maintenance_mode"> Modo de manutenção (bloqueia novas encomendas no servidor)</label>
+          <label for="s-maintenance_message">Mensagem de manutenção</label>
+          <input id="s-maintenance_message" maxlength="300">
+          <label class="check"><input type="checkbox" id="s-admin_order_alert_sound"> Som no painel quando chega uma encomenda ou comprovativo</label>
+          <div class="card-header" style="margin-top:22px"><h2>Textos legais</h2></div>
+          <p class="small muted">Se ficarem vazios, a app mostra os modelos incluídos no APK. Recomenda-se revisão jurídica.</p>
+          <label for="s-terms_text">Termos e Condições</label>
+          <textarea id="s-terms_text" style="min-height:180px"></textarea>
+          <label for="s-privacy_text">Política de Privacidade</label>
+          <textarea id="s-privacy_text" style="min-height:180px"></textarea>
+          <div class="form-actions"><button class="btn btn-primary" id="set-save" type="submit">Guardar configurações</button></div>
+        </form>
+        <div class="card">
+          <div class="card-header"><h2>Todas as definições (avançado)</h2></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Chave</th><th>Valor (JSON)</th><th>Pública</th><th>Actualizado</th></tr></thead>
+            <tbody id="set-raw"></tbody>
+          </table></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div id="toast-root"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

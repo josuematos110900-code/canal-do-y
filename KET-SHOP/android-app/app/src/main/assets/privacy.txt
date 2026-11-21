@@ -1,0 +1,28 @@
+POLÍTICA DE PRIVACIDADE — KET SHOP
+(Modelo base. Deve ser revisto pelo responsável pelo tratamento de dados e adaptado à legislação angolana aplicável, nomeadamente a Lei n.º 22/11, de 17 de Junho — Lei da Protecção de Dados Pessoais. A versão publicada no painel substitui este texto.)
+
+1. DADOS RECOLHIDOS
+• Dados da conta: nome, e-mail e, opcionalmente, telefone.
+• Dados das encomendas: produto, ID e nickname do jogador, valores, método de pagamento escolhido, estados e datas.
+• Comprovativos de pagamento: imagens enviadas pelo utilizador e respectivos metadados (nome do ficheiro, tipo e tamanho).
+• Dados técnicos mínimos necessários ao funcionamento (sessão de autenticação).
+
+2. FINALIDADES
+Os dados são usados exclusivamente para: gerir a conta; processar, verificar e entregar encomendas; prestar suporte; enviar notificações sobre as encomendas; prevenir fraude; cumprir obrigações legais e contabilísticas.
+
+3. ARMAZENAMENTO E SEGURANÇA
+• Os dados são guardados na infraestrutura Supabase, com acesso protegido por autenticação e regras de segurança ao nível de cada registo (Row Level Security).
+• Os comprovativos são guardados num armazenamento privado: apenas o próprio utilizador e a equipa autorizada da KET SHOP os podem consultar.
+• A app não recolhe dados de cartões bancários.
+
+4. PARTILHA
+Os dados não são vendidos. Só são partilhados quando necessário à prestação do serviço (fornecedor de infraestrutura) ou quando exigido por lei.
+
+5. CONSERVAÇÃO
+Os dados da conta são conservados enquanto a conta estiver activa. Os registos de encomendas podem ser conservados de forma anonimizada pelo prazo exigido pela legislação contabilística e fiscal.
+
+6. DIREITOS DO TITULAR
+O utilizador pode aceder e corrigir os seus dados no Perfil e eliminar a conta em Definições → Eliminar conta. Para outros pedidos (acesso, rectificação, oposição), contacte o suporte.
+
+7. ALTERAÇÕES
+Esta política pode ser actualizada. A versão em vigor é sempre a publicada na app.
