@@ -1,0 +1,306 @@
+rules_version = '2';
+
+// =====================================================================
+// KET SHOP — Firestore Security Rules
+// A app e o painel são clientes públicos: TODA a autorização está aqui.
+//   cliente  -> só lê/escreve os seus dados, nos estados permitidos
+//   operator -> gere encomendas, comprovativos e notificações
+//   admin    -> tudo (catálogo, pagamentos, definições, papéis)
+// O preço de cada encomenda é validado contra o documento do produto.
+// =====================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ------------------------------------------------------------ helpers
+    function signedIn() { return request.auth != null; }
+    function me() { return request.auth.uid; }
+    function rolesOf(u) { return get(/databases/$(database)/documents/roles/$(u)).data; }
+    function hasRoles() { return signedIn() && exists(/databases/$(database)/documents/roles/$(me())); }
+    function isAdmin() { return hasRoles() && rolesOf(me()).get('admin', false) == true; }
+    function isStaff() {
+      return hasRoles() && (rolesOf(me()).get('admin', false) == true || rolesOf(me()).get('operator', false) == true);
+    }
+    function notBlocked() {
+      return exists(/databases/$(database)/documents/users/$(me()))
+        && get(/databases/$(database)/documents/users/$(me())).data.get('is_blocked', false) == false;
+    }
+    function maintenance() {
+      return exists(/databases/$(database)/documents/settings/public)
+        && get(/databases/$(database)/documents/settings/public).data.get('maintenance_mode', false) == true;
+    }
+    function changedOnly(keys) { return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys); }
+    function str(v, min, max) { return v is string && v.size() >= min && v.size() <= max; }
+    function optStr(m, k, max) { return !(k in m) || m[k] == null || (m[k] is string && m[k].size() <= max); }
+    function phoneOk(m) { return !('phone' in m) || m.phone == null || m.phone == '' || m.phone.matches('^\\+?[0-9 ]{7,20}$'); }
+
+    // Transições permitidas à equipa
+    function staffNext(s) {
+      return {
+        'pending_payment':  ['under_review', 'cancelled'],
+        'proof_submitted':  ['under_review', 'payment_approved', 'payment_rejected', 'cancelled'],
+        'under_review':     ['payment_approved', 'payment_rejected', 'cancelled'],
+        'payment_approved': ['processing', 'completed', 'cancelled'],
+        'payment_rejected': ['under_review', 'cancelled'],
+        'processing':       ['completed', 'cancelled'],
+        'completed':        [],
+        'cancelled':        []
+      }[s];
+    }
+
+    // ------------------------------------------------------------ users
+    match /users/{userId} {
+      allow get, list: if signedIn() && (me() == userId || isStaff());
+      allow create: if signedIn() && me() == userId
+        && request.resource.data.keys().hasOnly(['full_name', 'email', 'phone', 'last_player_id', 'is_blocked', 'created_at', 'updated_at'])
+        && request.resource.data.is_blocked == false
+        && request.resource.data.email == request.auth.token.email
+        && str(request.resource.data.full_name, 0, 120)
+        && phoneOk(request.resource.data)
+        && request.resource.data.created_at == request.time;
+      allow update: if signedIn() && (
+          (me() == userId
+            && changedOnly(['full_name', 'phone', 'last_player_id', 'updated_at'])
+            && str(request.resource.data.full_name, 2, 120)
+            && phoneOk(request.resource.data)
+            && (!('last_player_id' in request.resource.data) || request.resource.data.last_player_id.matches('^[0-9]{5,15}$')))
+          || (isAdmin() && me() != userId
+            && changedOnly(['is_blocked', 'blocked_reason', 'updated_at'])
+            && request.resource.data.is_blocked is bool
+            && optStr(request.resource.data, 'blocked_reason', 300))
+        );
+      allow delete: if signedIn() && me() == userId;   // eliminação da própria conta
+    }
+
+    // ------------------------------------------------------------ roles
+    // O 1.º admin é criado manualmente na consola (a consola ignora as regras).
+    match /roles/{userId} {
+      allow get: if signedIn() && (me() == userId || isStaff());
+      allow list: if isStaff();
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['admin', 'operator', 'email', 'updated_at', 'updated_by'])
+        && request.resource.data.get('admin', false) is bool
+        && request.resource.data.get('operator', false) is bool
+        && request.resource.data.updated_by == me()
+        // um admin não pode retirar o próprio papel de admin
+        && !(userId == me() && request.resource.data.get('admin', false) != true);
+      allow delete: if isAdmin() && userId != me();
+    }
+
+    // ------------------------------------------------------------ catálogo
+    match /categories/{catId} {
+      allow get, list: if resource.data.is_active == true || isStaff();
+      allow create, update: if isAdmin()
+        && str(request.resource.data.name, 2, 60)
+        && request.resource.data.slug.matches('^[a-z0-9-]{2,40}$')
+        && request.resource.data.is_active is bool
+        && request.resource.data.sort_order is int;
+      allow delete: if isAdmin();
+    }
+
+    match /products/{productId} {
+      allow get, list: if resource.data.is_active == true || isStaff();
+      allow create, update: if isAdmin() && validProduct(request.resource.data);
+      allow delete: if isAdmin();
+    }
+    function validProduct(p) {
+      return str(p.name, 2, 80)
+        && p.category_id is string
+        && exists(/databases/$(database)/documents/categories/$(p.category_id))
+        && p.price_kz is number && p.price_kz > 0
+        && (p.base_amount == null || (p.base_amount is int && p.base_amount >= 0))
+        && p.bonus_amount is int && p.bonus_amount >= 0
+        && p.total_amount == (p.base_amount == null ? 0 : p.base_amount) + p.bonus_amount
+        && p.is_active is bool && p.is_on_demand is bool && p.is_featured is bool
+        && p.sort_order is int
+        && optStr(p, 'description', 600)
+        && (!('image_url' in p) || p.image_url == null || p.image_url.matches('^https://.*'));
+    }
+
+    // ------------------------------------------------------------ pagamentos
+    match /paymentMethods/{pmId} {
+      allow get, list: if signedIn() && (resource.data.is_active == true || isStaff());
+      allow create, update: if isAdmin()
+        && str(request.resource.data.name, 2, 60)
+        && request.resource.data.type in ['bank_transfer', 'multicaixa_express', 'paypay', 'reference']
+        && request.resource.data.is_active is bool
+        && (request.resource.data.get('iban', null) == null || request.resource.data.iban.matches('^[A-Z]{2}[0-9]{2}[0-9A-Z ]{10,40}$'))
+        && (request.resource.data.get('phone_number', null) == null || request.resource.data.phone_number.matches('^\\+?[0-9 ]{7,20}$'))
+        && optStr(request.resource.data, 'instructions', 2000);
+      allow delete: if isAdmin();
+    }
+
+    // ------------------------------------------------------------ definições
+    match /settings/{docId} {
+      allow get: if docId == 'public' || isStaff();
+      allow list: if isStaff();
+      allow write: if isAdmin() && docId in ['public', 'private'];
+    }
+
+    // ------------------------------------------------------------ encomendas
+    match /orders/{orderId} {
+      allow get: if signedIn() && (resource.data.user_id == me() || isStaff());
+      allow list: if signedIn() && (resource.data.user_id == me() || isStaff());
+
+      allow create: if signedIn() && notBlocked() && !maintenance() && validNewOrder(orderId, request.resource.data);
+      allow update: if signedIn() && request.resource.data.updated_at == request.time
+        && (customerUpdate(orderId) || staffUpdate());
+      allow delete: if false;
+
+      // Histórico de estados
+      match /history/{hid} {
+        allow get, list: if signedIn() && (get(/databases/$(database)/documents/orders/$(orderId)).data.user_id == me() || isStaff());
+        allow create: if signedIn()
+          && (getAfter(/databases/$(database)/documents/orders/$(orderId)).data.user_id == me() || isStaff())
+          && request.resource.data.keys().hasOnly(['old_status', 'new_status', 'note', 'changed_by', 'changed_by_name', 'created_at'])
+          && request.resource.data.new_status == getAfter(/databases/$(database)/documents/orders/$(orderId)).data.status
+          && request.resource.data.changed_by == me()
+          && request.resource.data.created_at == request.time
+          && optStr(request.resource.data, 'note', 500);
+        allow update, delete: if false;
+      }
+
+      // Metadados dos comprovativos (ficheiro no Cloud Storage privado)
+      match /proofs/{proofId} {
+        allow get, list: if signedIn() && (get(/databases/$(database)/documents/orders/$(orderId)).data.user_id == me() || isStaff());
+        allow create: if signedIn()
+          && getAfter(/databases/$(database)/documents/orders/$(orderId)).data.user_id == me()
+          && getAfter(/databases/$(database)/documents/orders/$(orderId)).data.status == 'proof_submitted'
+          && getAfter(/databases/$(database)/documents/orders/$(orderId)).data.last_proof_id == proofId
+          && request.resource.data.keys().hasOnly(['storage_path', 'file_name', 'mime_type', 'size_bytes', 'status', 'user_id', 'created_at'])
+          && request.resource.data.user_id == me()
+          && request.resource.data.storage_path.matches('^proofs/' + me() + '/' + orderId + '/[A-Za-z0-9_.-]+$')
+          && request.resource.data.mime_type in ['image/jpeg', 'image/png', 'image/webp']
+          && request.resource.data.size_bytes is int
+          && request.resource.data.size_bytes > 0 && request.resource.data.size_bytes <= 5242880
+          && request.resource.data.status == 'pending'
+          && request.resource.data.created_at == request.time;
+        allow update: if isStaff()
+          && changedOnly(['status', 'reviewed_by', 'reviewed_at', 'review_notes'])
+          && request.resource.data.status in ['approved', 'rejected']
+          && request.resource.data.reviewed_by == me();
+        allow delete: if false;
+      }
+    }
+
+    function validNewOrder(orderId, d) {
+      let p = get(/databases/$(database)/documents/products/$(d.product_id)).data;
+      return d.keys().hasOnly(['order_code', 'user_id', 'status', 'game', 'player_id', 'player_nickname', 'product_id',
+                               'order_items', 'subtotal_kz', 'total_kz', 'payment_method_id', 'payment_method_snapshot',
+                               'customer_notes', 'is_on_demand', 'proof_count', 'created_at', 'updated_at'])
+        && orderId.matches('^KET-[0-9]{6}-[A-Z0-9]{6}$')
+        && d.order_code == orderId
+        && d.user_id == me()
+        && d.status == 'pending_payment'
+        && d.player_id.matches('^[0-9]{5,15}$')
+        && optStr(d, 'player_nickname', 40)
+        && optStr(d, 'customer_notes', 500)
+        && d.payment_method_id == null && d.payment_method_snapshot == null
+        && d.proof_count == 0
+        && d.created_at == request.time && d.updated_at == request.time
+        // Preço e produto validados contra a base de dados (não contra a app)
+        && p.is_active == true
+        && d.total_kz == p.price_kz && d.subtotal_kz == p.price_kz
+        && d.is_on_demand == p.is_on_demand
+        && d.game == p.game
+        && d.order_items.size() == 1
+        && d.order_items[0].product_id == d.product_id
+        && d.order_items[0].product_name == p.name
+        && d.order_items[0].quantity == 1
+        && d.order_items[0].unit_price_kz == p.price_kz
+        && d.order_items[0].line_total_kz == p.price_kz
+        && d.order_items[0].total_amount == p.total_amount;
+    }
+
+    function customerUpdate(orderId) {
+      return resource.data.user_id == me() && notBlocked()
+        && (setPaymentMethod() || submitProof(orderId) || customerCancel());
+    }
+
+    function setPaymentMethod() {
+      let d = request.resource.data;
+      let pm = get(/databases/$(database)/documents/paymentMethods/$(d.payment_method_id)).data;
+      let s = d.payment_method_snapshot;
+      return resource.data.status in ['pending_payment', 'payment_rejected']
+        && d.status == resource.data.status
+        && changedOnly(['payment_method_id', 'payment_method_snapshot', 'updated_at'])
+        && pm.is_active == true
+        && s.id == d.payment_method_id
+        && s.type == pm.type && s.name == pm.name
+        && s.get('iban', null) == pm.get('iban', null)
+        && s.get('phone_number', null) == pm.get('phone_number', null)
+        && s.get('entity', null) == pm.get('entity', null)
+        && s.get('reference', null) == pm.get('reference', null)
+        && s.get('account_number', null) == pm.get('account_number', null)
+        && s.get('account_holder', null) == pm.get('account_holder', null)
+        && s.get('bank_name', null) == pm.get('bank_name', null)
+        && s.get('instructions', null) == pm.get('instructions', null);
+    }
+
+    function submitProof(orderId) {
+      let d = request.resource.data;
+      return resource.data.status in ['pending_payment', 'payment_rejected']
+        && resource.data.payment_method_id != null
+        && d.status == 'proof_submitted'
+        && changedOnly(['status', 'updated_at', 'payment_submitted_at', 'last_proof_id', 'proof_count', 'rejection_reason'])
+        && d.payment_submitted_at == request.time
+        && d.proof_count == resource.data.get('proof_count', 0) + 1
+        && d.get('rejection_reason', null) == null
+        && existsAfter(/databases/$(database)/documents/orders/$(orderId)/proofs/$(d.last_proof_id));
+    }
+
+    function customerCancel() {
+      let d = request.resource.data;
+      return resource.data.status in ['pending_payment', 'payment_rejected']
+        && d.status == 'cancelled'
+        && changedOnly(['status', 'updated_at', 'cancelled_at', 'cancel_reason'])
+        && d.cancelled_at == request.time
+        && str(d.cancel_reason, 1, 500);
+    }
+
+    function staffUpdate() {
+      let d = request.resource.data;
+      let from = resource.data.status;
+      let to = d.status;
+      return isStaff()
+        && d.diff(resource.data).affectedKeys().hasOnly(['status', 'updated_at', 'processed_by', 'rejection_reason',
+              'cancel_reason', 'approved_at', 'completed_at', 'cancelled_at', 'admin_notes'])
+        && d.processed_by == me()
+        && (to == from || to in staffNext(from))
+        && (to == from || to != 'payment_rejected' || str(d.rejection_reason, 1, 500))
+        && (to == from || to != 'cancelled' || str(d.cancel_reason, 1, 500))
+        && optStr(d, 'admin_notes', 1000);
+    }
+
+    // ------------------------------------------------------------ notificações
+    match /notifications/{nid} {
+      allow get, list: if signedIn() && (resource.data.user_id == me() || isStaff());
+      allow create: if signedIn()
+        && (request.resource.data.user_id == me() || isStaff())
+        && request.resource.data.keys().hasOnly(['user_id', 'type', 'title', 'body', 'order_id', 'is_read', 'created_by', 'created_at'])
+        && request.resource.data.type in ['order_created', 'proof_received', 'payment_approved', 'payment_rejected',
+                                           'order_completed', 'order_status', 'general']
+        && str(request.resource.data.title, 1, 120)
+        && str(request.resource.data.body, 1, 1000)
+        && request.resource.data.is_read == false
+        && request.resource.data.created_by == me()
+        && request.resource.data.created_at == request.time
+        // clientes só criam notificações automáticas das suas encomendas, nunca "gerais"
+        && (isStaff() || request.resource.data.type != 'general');
+      allow update: if signedIn() && resource.data.user_id == me()
+        && changedOnly(['is_read', 'read_at'])
+        && request.resource.data.is_read == true;
+      allow delete: if signedIn() && resource.data.user_id == me();
+    }
+
+    // ------------------------------------------------------------ auditoria
+    match /auditLogs/{logId} {
+      allow get, list: if isAdmin();
+      allow create: if isStaff()
+        && request.resource.data.actor_id == me()
+        && request.resource.data.created_at == request.time
+        && str(request.resource.data.action, 1, 80)
+        && str(request.resource.data.entity, 1, 60);
+      allow update, delete: if false;
+    }
+  }
+}

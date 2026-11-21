@@ -1,0 +1,40 @@
+rules_version = '2';
+
+// =====================================================================
+// KET SHOP — Cloud Storage Security Rules
+// Comprovativos privados: proofs/<uid>/<orderId>/<ficheiro>
+// =====================================================================
+service firebase.storage {
+  match /b/{bucket}/o {
+    function rolesDoc() { return /databases/(default)/documents/roles/$(request.auth.uid); }
+    function isStaff() {
+      return request.auth != null && firestore.exists(rolesDoc())
+        && (firestore.get(rolesDoc()).data.get('admin', false) == true
+            || firestore.get(rolesDoc()).data.get('operator', false) == true);
+    }
+    function isAdmin() {
+      return request.auth != null && firestore.exists(rolesDoc())
+        && firestore.get(rolesDoc()).data.get('admin', false) == true;
+    }
+    function order(orderId) { return firestore.get(/databases/(default)/documents/orders/$(orderId)).data; }
+
+    match /proofs/{userId}/{orderId}/{fileName} {
+      allow read: if request.auth != null && (request.auth.uid == userId || isStaff());
+      // Só o dono, para uma encomenda sua que aceite comprovativo; imagem até 5 MB
+      allow create: if request.auth != null && request.auth.uid == userId
+        && resource == null
+        && request.resource.size > 0 && request.resource.size <= 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)')
+        && fileName.matches('^[A-Za-z0-9_.-]+\\.(jpg|jpeg|png|webp)$')
+        && order(orderId).user_id == userId
+        && order(orderId).status in ['pending_payment', 'payment_rejected'];
+      // Comprovativo enviado não pode ser substituído
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
