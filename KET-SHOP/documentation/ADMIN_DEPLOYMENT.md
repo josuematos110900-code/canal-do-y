@@ -39,6 +39,6 @@ Contas sem papel `admin`/`operator` são recusadas mesmo que tenham palavra-pass
 - O indicador verde na barra superior mostra que o **Realtime** está ligado; se ficar cinzento, o painel
   actualiza a cada 30 s automaticamente.
 - O som de novas encomendas pode ser desligado em **Configurações**.
-- A biblioteca `@supabase/supabase-js@2.45.4` é carregada do jsDelivr com versão fixa. Para não
-  depender de CDN, descarregue `dist/umd/supabase.min.js` para `admin-web/js/` e ajuste o `<script>`
+- A biblioteca `@supabase/supabase-js@2.118.0` é carregada do jsDelivr com versão fixa. Para não
+  depender de CDN, descarregue `dist/umd/supabase.js` para `admin-web/js/` e ajuste o `<script>`
   das páginas.

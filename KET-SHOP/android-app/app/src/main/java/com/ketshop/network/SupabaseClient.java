@@ -131,7 +131,13 @@ public final class SupabaseClient {
     static Map<String, String> baseHeaders(String userToken) {
         Map<String, String> h = new HashMap<>();
         h.put("apikey", SupabaseConfig.SUPABASE_ANON_KEY);
-        h.put("Authorization", "Bearer " + (userToken != null ? userToken : SupabaseConfig.SUPABASE_ANON_KEY));
+        if (userToken != null) {
+            h.put("Authorization", "Bearer " + userToken);
+        } else if (SupabaseConfig.SUPABASE_ANON_KEY.startsWith("eyJ")) {
+            // Chave "anon" antiga (JWT): pode ir também no Authorization.
+            // Chaves novas "sb_publishable_..." não são JWT: vão só no cabeçalho apikey.
+            h.put("Authorization", "Bearer " + SupabaseConfig.SUPABASE_ANON_KEY);
+        }
         return h;
     }
 

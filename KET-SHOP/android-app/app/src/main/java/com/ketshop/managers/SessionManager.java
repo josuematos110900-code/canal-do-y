@@ -103,7 +103,9 @@ public final class SessionManager {
         if (refresh == null) throw ApiException.sessionExpired();
         Map<String, String> h = new HashMap<>();
         h.put("apikey", SupabaseConfig.SUPABASE_ANON_KEY);
-        h.put("Authorization", "Bearer " + SupabaseConfig.SUPABASE_ANON_KEY);
+        if (SupabaseConfig.SUPABASE_ANON_KEY.startsWith("eyJ")) {
+            h.put("Authorization", "Bearer " + SupabaseConfig.SUPABASE_ANON_KEY);
+        }
         h.put("Content-Type", "application/json");
         String body = "{\"refresh_token\":" + JSONObject.quote(refresh) + "}";
         HttpClient.Response r;

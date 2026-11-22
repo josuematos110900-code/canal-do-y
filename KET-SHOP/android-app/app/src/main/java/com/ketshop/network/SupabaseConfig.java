@@ -6,7 +6,7 @@ package com.ketshop.network;
  * SUBSTITUA os dois valores abaixo pelos do seu projecto:
  *   Supabase Dashboard -> Project Settings -> API
  *     - Project URL           -> SUPABASE_URL
- *     - Project API keys: anon public -> SUPABASE_ANON_KEY
+ *     - Publishable key (sb_publishable_...) ou anon public -> SUPABASE_ANON_KEY
  *
  * NUNCA coloque aqui a chave service_role. A chave anon é pública por
  * definição; a segurança é garantida pelas políticas RLS e pelas funções
@@ -14,8 +14,8 @@ package com.ketshop.network;
  */
 public final class SupabaseConfig {
 
-    public static final String SUPABASE_URL = "https://SEU-PROJECTO.supabase.co";
-    public static final String SUPABASE_ANON_KEY = "COLE_AQUI_A_SUA_ANON_KEY";
+    public static final String SUPABASE_URL = "https://phgjhqwlphqhclbistpb.supabase.co";
+    public static final String SUPABASE_ANON_KEY = "sb_publishable_MkkpUqljmFh1Y8hQHeu7bw_dIxbnycT";
 
     /** Página pública (admin-web/reset-password.html) para definir nova palavra-passe. */
     public static final String PASSWORD_RESET_REDIRECT_URL = "https://SEU-DOMINIO-DO-PAINEL/reset-password.html";
