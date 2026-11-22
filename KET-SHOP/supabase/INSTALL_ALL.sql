@@ -17,22 +17,26 @@ do $$
 declare
   v_conflicts text := '';
   v_label text;
+  v_expected text;
 begin
-  -- Tipos enumerados com o mesmo nome mas valores diferentes
-  if exists (select 1 from pg_type t join pg_namespace n on n.oid = t.typnamespace
-             where n.nspname = 'public' and t.typname = 'order_status')
-     and not exists (select 1 from pg_enum e join pg_type t on t.oid = e.enumtypid
-                     join pg_namespace n on n.oid = t.typnamespace
-                     where n.nspname = 'public' and t.typname = 'order_status' and e.enumlabel = 'pending_payment') then
-    v_conflicts := v_conflicts || ' tipo order_status (de outra aplicação);';
-  end if;
-  foreach v_label in array array['app_role','payment_method_type','proof_status','notification_type'] loop
+  -- Tipos enumerados com o mesmo nome mas valores diferentes dos da KET SHOP
+  -- (tipos iguais, deixados por uma tentativa anterior, não são conflito)
+  for v_label, v_expected in
+    select * from (values
+      ('order_status', 'pending_payment,proof_submitted,under_review,payment_approved,payment_rejected,processing,completed,cancelled'),
+      ('app_role', 'admin,operator,customer'),
+      ('payment_method_type', 'bank_transfer,multicaixa_express,paypay,reference'),
+      ('proof_status', 'pending,approved,rejected'),
+      ('notification_type', 'order_created,proof_received,payment_approved,payment_rejected,order_completed,order_status,general')
+    ) as x(name, labels)
+  loop
     if exists (select 1 from pg_type t join pg_namespace n on n.oid = t.typnamespace
                where n.nspname = 'public' and t.typname = v_label)
-       and not exists (select 1 from pg_type t join pg_namespace n on n.oid = t.typnamespace
-                       where n.nspname = 'public' and t.typname = 'order_status'
-                         and exists (select 1 from pg_enum e where e.enumtypid = t.oid and e.enumlabel = 'pending_payment')) then
-      v_conflicts := v_conflicts || ' tipo ' || v_label || ';';
+       and coalesce((select string_agg(e.enumlabel, ',' order by e.enumsortorder)
+                       from pg_enum e join pg_type t on t.oid = e.enumtypid
+                       join pg_namespace n on n.oid = t.typnamespace
+                      where n.nspname = 'public' and t.typname = v_label), '') <> v_expected then
+      v_conflicts := v_conflicts || ' tipo ' || v_label || ' (valores de outra aplicação);';
     end if;
   end loop;
   -- Tabelas da KET SHOP que já existem com outra estrutura
