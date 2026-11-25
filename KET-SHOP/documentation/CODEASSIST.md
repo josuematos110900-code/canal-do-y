@@ -1,3 +1,6 @@
+> **Nota:** o projecto passou a ser desenvolvido no **Android Studio** ([ANDROID_STUDIO.md](ANDROID_STUDIO.md)), com plugin Android 8.13 e API 36.
+> O código continua sem bibliotecas externas, mas o CodeAssist pode não suportar esta versão do plugin; este guia fica como referência.
+
 # Abrir e compilar no CodeAssist (Android)
 
 ## Porque é que o projecto é compatível

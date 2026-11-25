@@ -24,7 +24,7 @@ por políticas RLS e funções SQL `SECURITY DEFINER`.
 
 ```
 KET-SHOP/
-├── android-app/                  Projecto Android (abrir no CodeAssist)
+├── android-app/                  Projecto Android (abrir no Android Studio)
 │   ├── settings.gradle
 │   ├── build.gradle
 │   ├── store-assets/             Ícone 512 px para a loja
@@ -70,7 +70,7 @@ KET-SHOP/
 2. **Primeiro administrador** — criar a conta e executar `supabase/seed/002_promote_first_admin.sql`
 3. **Painel** — preencher `admin-web/js/config.js` e publicar a pasta → [ADMIN_DEPLOYMENT.md](ADMIN_DEPLOYMENT.md)
 4. **Métodos de pagamento** — no painel, preencher IBAN/números reais e activar
-5. **App** — preencher `SupabaseConfig.java`, abrir no CodeAssist e compilar → [CODEASSIST.md](CODEASSIST.md), [BUILD_APK.md](BUILD_APK.md)
+5. **App** — abrir `android-app` no **Android Studio**, executar e gerar o AAB → [ANDROID_STUDIO.md](ANDROID_STUDIO.md)
 
 ## Funcionalidades
 

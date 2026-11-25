@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -135,6 +136,22 @@ public class ProofUploadActivity extends BaseActivity {
             return;
         }
         super.onBackPressed();
+    }
+
+    /** Android 13+: o gesto "voltar" do sistema não chama onBackPressed; bloqueia-o durante o envio. */
+    private Object backBlocker;
+
+    private void setBackBlocked(boolean blocked) {
+        if (Build.VERSION.SDK_INT < 33) return;
+        android.window.OnBackInvokedDispatcher d = getOnBackInvokedDispatcher();
+        if (blocked && backBlocker == null) {
+            android.window.OnBackInvokedCallback cb = () -> UiUtils.toast(this, getString(R.string.proof_wait_upload));
+            d.registerOnBackInvokedCallback(android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, cb);
+            backBlocker = cb;
+        } else if (!blocked && backBlocker != null) {
+            d.unregisterOnBackInvokedCallback((android.window.OnBackInvokedCallback) backBlocker);
+            backBlocker = null;
+        }
     }
 
     // ------------------------------------------------------------ Encomenda
@@ -302,6 +319,7 @@ public class ProofUploadActivity extends BaseActivity {
 
     private void upload() {
         uploading = true;
+        setBackBlocked(true);
         error.setVisibility(View.GONE);
         submit.setEnabled(false);
         submit.setText(R.string.proof_uploading);
@@ -331,10 +349,12 @@ public class ProofUploadActivity extends BaseActivity {
             return path;
         }, path -> {
             uploading = false;
+            setBackBlocked(false);
             progress.setProgress(100);
             showSuccess();
         }, e -> {
             uploading = false;
+            setBackBlocked(false);
             progressBox.setVisibility(View.GONE);
             replaceBtn.setEnabled(true);
             removeBtn.setVisibility(View.VISIBLE);

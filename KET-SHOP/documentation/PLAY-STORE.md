@@ -1,10 +1,9 @@
 # O que falta para publicar na Google Play
 
 ## Técnico (pode ser feito no código)
-1. **Target SDK actual** — a Play exige uma versão recente (API 35 ou superior; confirmar na Play Console).
-   A partir da API 35 o Android desenha por baixo da barra de estado: os layouts têm de tratar os *insets*.
-2. **Formato AAB** — apps novas só são aceites em Android App Bundle. O CodeAssist normalmente gera APK;
-   gerar o AAB no Android Studio ou numa compilação automática no GitHub.
+1. ✅ **Target SDK actual** — feito: targetSdk 36 (Android 16), com ecrã de ponta a ponta e gesto "voltar" tratados.
+   Confirmar na Play Console o nível exigido na data da publicação.
+2. ✅ **Formato AAB** — gerado no Android Studio (ver `ANDROID_STUDIO.md`, secção 4).
 3. **Eliminação de conta por endereço web** (além da opção dentro da app).
 4. **Política de Privacidade num URL público**.
 5. **Gráfico de destaque 1024×500** (o ícone 512 px está em `android-app/store-assets/`).

@@ -1,3 +1,5 @@
+> **Recomendado:** use o Android Studio — ver [ANDROID_STUDIO.md](ANDROID_STUDIO.md). Para a Play Store é obrigatório o formato **AAB**.
+
 # Gerar o APK
 
 ## A) No CodeAssist (telemóvel)
@@ -13,8 +15,7 @@ versionCode mínimo**.
 
 ## B) Num computador (Android Studio ou Gradle)
 O projecto também é um projecto Gradle normal.
-1. Android Studio → *Open* → pasta `android-app`. O Android Studio cria o *Gradle wrapper* e
-   descarrega o plugin indicado em `build.gradle` (AGP 7.4.2; pode actualizar se o Studio sugerir).
+1. Android Studio → *Open* → pasta `android-app`. O projecto já traz o *Gradle wrapper* (Gradle 8.14.3) e usa o plugin Android 8.13.0.
 2. *Build → Generate Signed Bundle / APK* → APK → crie/escolha o *keystore* → *release*.
 
 ## C) Assinar um APK manualmente (Termux ou computador)
