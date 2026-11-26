@@ -1,0 +1,16 @@
+KET SHOP — PAINEL ADMIN (DEMONSTRAÇÃO)
+
+Esta pasta é uma versão de DEMONSTRAÇÃO do painel admin, com dados de exemplo.
+Não está ligada a nenhuma base de dados: não há login real, nada é guardado e
+não aparece nenhum dado verdadeiro. Serve para mostrar o painel a clientes.
+
+COMO CRIAR UM LINK PARA PARTILHAR (grátis, 2 minutos):
+1. Extrair o ZIP (fica a pasta KET-SHOP-PAINEL-DEMO).
+2. Abrir https://app.netlify.com/drop no navegador (computador ou telemóvel).
+3. Arrastar a pasta KET-SHOP-PAINEL-DEMO para a página (ou "browse to upload").
+4. O Netlify dá um link do tipo https://nome-aleatorio.netlify.app
+5. Enviar esse link ao cliente. Ele abre directamente o Dashboard.
+   (Para o link não expirar, crie uma conta grátis no Netlify quando ele pedir.)
+
+O painel VERDADEIRO do cliente é a pasta admin-web do projecto, ligada ao Supabase,
+e só deve ser entregue depois de fechado o negócio.
