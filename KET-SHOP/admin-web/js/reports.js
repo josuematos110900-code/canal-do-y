@@ -48,7 +48,7 @@
 
   function exportCsv() {
     if (!last) return;
-    const rows = [["Relatório KET SHOP", last.from + " a " + last.to], [],
+    const rows = [["Relatório Elite Shop", last.from + " a " + last.to], [],
       ["Receita (Kz)", last.revenue], ["Encomendas", last.orders], ["Pagas", last.paid_orders], ["Rejeitadas", last.rejected], ["Canceladas", last.cancelled], [],
       ["Dia", "Encomendas", "Receita (Kz)"]];
     (last.by_day || []).forEach((x) => rows.push([x.day, x.orders, x.revenue]));
@@ -56,7 +56,7 @@
     (last.by_product || []).forEach((x) => rows.push([x.product, x.quantity, x.revenue]));
     rows.push([], ["Método", "Encomendas", "Receita (Kz)"]);
     (last.by_payment_method || []).forEach((x) => rows.push([x.method, x.orders, x.revenue]));
-    KS.downloadCSV(`relatorio-ketshop-${last.from}-${last.to}.csv`, rows);
+    KS.downloadCSV(`relatorio-eliteshop-${last.from}-${last.to}.csv`, rows);
   }
 
   run();

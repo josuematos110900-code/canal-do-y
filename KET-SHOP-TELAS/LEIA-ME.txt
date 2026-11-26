@@ -1,4 +1,4 @@
-KET SHOP — imagens das telas
+Elite Shop — imagens das telas
 
 app-android/
   00-todas-as-telas.png  -> as 21 telas numa só imagem
@@ -8,5 +8,5 @@ app-android/
   (não havia emulador Android disponível). Na app real o conteúdo vem do Firebase.
 
 painel-admin/
-  Capturas reais do painel a funcionar no emulador do Firebase (computador 1366 px
+  Capturas reais do painel a funcionar no painel (dados de exemplo) (computador 1366 px
   e telemóvel 390 px), incluindo o detalhe de uma encomenda com comprovativo.

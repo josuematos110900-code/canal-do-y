@@ -1,9 +1,9 @@
 -- =====================================================================
--- KET SHOP — 001: Extensões e tipos enumerados
+-- Elite Shop — 001: Extensões e tipos enumerados
 -- Executar no SQL Editor do Supabase (ou via `supabase db push`).
 -- =====================================================================
 
--- Verificação de segurança: o projecto tem de estar vazio ou já ter a KET SHOP.
+-- Verificação de segurança: o projecto tem de estar vazio ou já ter a Elite Shop.
 -- Se outra aplicação já usa os mesmos nomes, a instalação pára aqui sem alterar nada.
 do $$
 declare
@@ -11,7 +11,7 @@ declare
   v_label text;
   v_expected text;
 begin
-  -- Tipos enumerados com o mesmo nome mas valores diferentes dos da KET SHOP
+  -- Tipos enumerados com o mesmo nome mas valores diferentes dos da Elite Shop
   -- (tipos iguais, deixados por uma tentativa anterior, não são conflito)
   for v_label, v_expected in
     select * from (values
@@ -31,7 +31,7 @@ begin
       v_conflicts := v_conflicts || ' tipo ' || v_label || ' (valores de outra aplicação);';
     end if;
   end loop;
-  -- Tabelas da KET SHOP que já existem com outra estrutura
+  -- Tabelas da Elite Shop que já existem com outra estrutura
   if exists (select 1 from information_schema.tables where table_schema = 'public' and table_name = 'profiles')
      and not exists (select 1 from information_schema.columns where table_schema = 'public'
                      and table_name = 'profiles' and column_name = 'last_player_id') then
@@ -48,7 +48,7 @@ begin
     v_conflicts := v_conflicts || ' tabela notifications (de outra aplicação);';
   end if;
   if v_conflicts <> '' then
-    raise exception 'KET SHOP: este projecto Supabase já pertence a outra aplicação. Conflitos:% Nada foi alterado. Crie um projecto NOVO e vazio (New project) e execute este ficheiro lá.', v_conflicts;
+    raise exception 'Elite Shop: este projecto Supabase já pertence a outra aplicação. Conflitos:% Nada foi alterado. Crie um projecto NOVO e vazio (New project) e execute este ficheiro lá.', v_conflicts;
   end if;
 end $$;
 

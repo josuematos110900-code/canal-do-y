@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Paleta KET SHOP: preto, roxo escuro, roxo neon -->
+    <!-- Paleta Elite Shop: preto, roxo escuro, roxo neon -->
     <color name="ks_black">#FF07060B</color>
     <color name="ks_bg">#FF0B0912</color>
     <color name="ks_bg_end">#FF1A0B33</color>

@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — Promover o PRIMEIRO administrador
+-- Elite Shop — Promover o PRIMEIRO administrador
 -- 1) Crie a conta normalmente (pela app Android ou em Authentication > Users).
 -- 2) Substitua o e-mail abaixo e execute no SQL Editor (corre como postgres).
 -- Depois disso, novos admins/operadores são geridos no painel (Clientes).

@@ -14,12 +14,12 @@ import java.io.FileNotFoundException;
 
 /**
  * Fornecedor de ficheiros minimalista (substitui androidx FileProvider) para
- * que a app da câmara possa gravar a fotografia no cache privado da KET SHOP.
+ * que a app da câmara possa gravar a fotografia no cache privado da Elite Shop.
  * Não é exportado: o acesso é concedido apenas por URI temporária.
  */
 public class ProofFileProvider extends ContentProvider {
 
-    public static final String AUTHORITY = "com.ketshop.proofprovider";
+    public static final String AUTHORITY = com.ketshop.BuildConfig.APPLICATION_ID + ".proofprovider";
     private static final String DIR = "proofs";
 
     public static File proofDir(Context ctx) {

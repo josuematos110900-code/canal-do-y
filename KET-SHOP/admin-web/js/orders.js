@@ -73,7 +73,7 @@
     data.forEach((o) => rows.push([o.order_code, KS.STATUS[o.status], o.profiles ? o.profiles.full_name : "", o.profiles ? o.profiles.email : "",
       (o.order_items[0] || {}).product_name, o.player_id, o.player_nickname, o.payment_method_snapshot ? o.payment_method_snapshot.name : "",
       o.total_kz, KS.date(o.created_at)]));
-    KS.downloadCSV("encomendas-ketshop.csv", rows);
+    KS.downloadCSV("encomendas-eliteshop.csv", rows);
   }
 
   // ------------------------------------------------------- Detalhe da encomenda

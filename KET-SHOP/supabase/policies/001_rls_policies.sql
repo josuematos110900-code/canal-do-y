@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — Políticas RLS (Row Level Security)
+-- Elite Shop — Políticas RLS (Row Level Security)
 -- Regra geral:
 --   * cliente   -> só lê/escreve os SEUS dados
 --   * operator  -> gere encomendas, comprovativos, notificações

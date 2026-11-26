@@ -8,7 +8,7 @@ Este documento separa **o que foi verificado automaticamente durante o desenvolv
 ### 1.1 Base de dados — PostgreSQL 16 com *stubs* de `auth` e `storage` do Supabase
 - `INSTALL_ALL.sql` executado **duas vezes seguidas** numa base limpa sem erros (idempotente).
 - Fluxo completo simulando JWT de 3 utilizadores (cliente A, cliente B, admin):
-  - cliente vê 13 produtos e só métodos activos; cria encomenda (`KET-AAMMDD-XXXXXX`, preço do servidor);
+  - cliente vê 13 produtos e só métodos activos; cria encomenda (`ELT-AAMMDD-XXXXXX`, preço do servidor);
   - `UPDATE orders` directo → **negado**; `admin_update_order_status` por cliente → **negado**;
     `UPDATE profiles set is_blocked` pelo cliente → **negado**;
   - upload para pasta de outro utilizador → **negado (RLS Storage)**; extensão `.exe` → **negada**;

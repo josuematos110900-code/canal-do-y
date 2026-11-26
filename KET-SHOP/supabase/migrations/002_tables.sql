@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — 002: Tabelas, chaves estrangeiras e constraints
+-- Elite Shop — 002: Tabelas, chaves estrangeiras e constraints
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
@@ -98,7 +98,7 @@ create table if not exists public.payment_methods (
 -- ---------------------------------------------------------------------
 create table if not exists public.orders (
   id                       uuid primary key default gen_random_uuid(),
-  order_code               text not null unique check (order_code ~ '^KET-[0-9]{6}-[A-Z0-9]{6}$'),
+  order_code               text not null unique check (order_code ~ '^(ELT|KET)-[0-9]{6}-[A-Z0-9]{6}$'),
   user_id                  uuid references public.profiles(id) on delete set null,
   status                   public.order_status not null default 'pending_payment',
   game                     text not null default 'Free Fire',

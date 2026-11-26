@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — INSTALAÇÃO COMPLETA (gerado a partir dos ficheiros individuais)
+-- Elite Shop — INSTALAÇÃO COMPLETA (gerado a partir dos ficheiros individuais)
 -- Cole TODO este ficheiro no Supabase Dashboard -> SQL Editor -> Run,
 -- num projecto NOVO e vazio. É seguro executar novamente (idempotente).
 -- Se o projecto já pertencer a outra aplicação, o script pára no início sem alterar nada.
@@ -7,11 +7,11 @@
 
 -- >>>>>>>>>> migrations/001_extensions_and_types.sql
 -- =====================================================================
--- KET SHOP — 001: Extensões e tipos enumerados
+-- Elite Shop — 001: Extensões e tipos enumerados
 -- Executar no SQL Editor do Supabase (ou via `supabase db push`).
 -- =====================================================================
 
--- Verificação de segurança: o projecto tem de estar vazio ou já ter a KET SHOP.
+-- Verificação de segurança: o projecto tem de estar vazio ou já ter a Elite Shop.
 -- Se outra aplicação já usa os mesmos nomes, a instalação pára aqui sem alterar nada.
 do $$
 declare
@@ -19,7 +19,7 @@ declare
   v_label text;
   v_expected text;
 begin
-  -- Tipos enumerados com o mesmo nome mas valores diferentes dos da KET SHOP
+  -- Tipos enumerados com o mesmo nome mas valores diferentes dos da Elite Shop
   -- (tipos iguais, deixados por uma tentativa anterior, não são conflito)
   for v_label, v_expected in
     select * from (values
@@ -39,7 +39,7 @@ begin
       v_conflicts := v_conflicts || ' tipo ' || v_label || ' (valores de outra aplicação);';
     end if;
   end loop;
-  -- Tabelas da KET SHOP que já existem com outra estrutura
+  -- Tabelas da Elite Shop que já existem com outra estrutura
   if exists (select 1 from information_schema.tables where table_schema = 'public' and table_name = 'profiles')
      and not exists (select 1 from information_schema.columns where table_schema = 'public'
                      and table_name = 'profiles' and column_name = 'last_player_id') then
@@ -56,7 +56,7 @@ begin
     v_conflicts := v_conflicts || ' tabela notifications (de outra aplicação);';
   end if;
   if v_conflicts <> '' then
-    raise exception 'KET SHOP: este projecto Supabase já pertence a outra aplicação. Conflitos:% Nada foi alterado. Crie um projecto NOVO e vazio (New project) e execute este ficheiro lá.', v_conflicts;
+    raise exception 'Elite Shop: este projecto Supabase já pertence a outra aplicação. Conflitos:% Nada foi alterado. Crie um projecto NOVO e vazio (New project) e execute este ficheiro lá.', v_conflicts;
   end if;
 end $$;
 
@@ -104,7 +104,7 @@ exception when duplicate_object then null; end $$;
 
 -- >>>>>>>>>> migrations/002_tables.sql
 -- =====================================================================
--- KET SHOP — 002: Tabelas, chaves estrangeiras e constraints
+-- Elite Shop — 002: Tabelas, chaves estrangeiras e constraints
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
@@ -203,7 +203,7 @@ create table if not exists public.payment_methods (
 -- ---------------------------------------------------------------------
 create table if not exists public.orders (
   id                       uuid primary key default gen_random_uuid(),
-  order_code               text not null unique check (order_code ~ '^KET-[0-9]{6}-[A-Z0-9]{6}$'),
+  order_code               text not null unique check (order_code ~ '^(ELT|KET)-[0-9]{6}-[A-Z0-9]{6}$'),
   user_id                  uuid references public.profiles(id) on delete set null,
   status                   public.order_status not null default 'pending_payment',
   game                     text not null default 'Free Fire',
@@ -317,7 +317,7 @@ create table if not exists public.audit_logs (
 
 -- >>>>>>>>>> migrations/003_indexes.sql
 -- =====================================================================
--- KET SHOP — 003: Índices
+-- Elite Shop — 003: Índices
 -- =====================================================================
 create index if not exists idx_user_roles_user            on public.user_roles (user_id);
 create index if not exists idx_products_category_sort     on public.products (category_id, sort_order);
@@ -341,7 +341,7 @@ create index if not exists idx_audit_logs_actor           on public.audit_logs (
 
 -- >>>>>>>>>> migrations/004_functions.sql
 -- =====================================================================
--- KET SHOP — 004: Funções (helpers de papéis + RPCs seguras)
+-- Elite Shop — 004: Funções (helpers de papéis + RPCs seguras)
 -- Todas as operações sensíveis passam por funções SECURITY DEFINER
 -- que validam auth.uid() e o papel no servidor. A app e o painel só
 -- usam a chave anon + JWT do utilizador.
@@ -408,7 +408,7 @@ begin
     for i in 1..6 loop
       v_suffix := v_suffix || substr(v_alphabet, 1 + floor(random() * length(v_alphabet))::int, 1);
     end loop;
-    v_code := 'KET-' || to_char(now() at time zone 'Africa/Luanda', 'YYMMDD') || '-' || v_suffix;
+    v_code := 'ELT-' || to_char(now() at time zone 'Africa/Luanda', 'YYMMDD') || '-' || v_suffix;
     exit when not exists (select 1 from public.orders o where o.order_code = v_code);
   end loop;
   return v_code;
@@ -911,7 +911,7 @@ select p.id, p.full_name, p.email, p.phone, p.is_blocked, p.blocked_reason, p.la
 
 -- >>>>>>>>>> migrations/005_triggers.sql
 -- =====================================================================
--- KET SHOP — 005: Triggers (perfis, histórico, notificações, auditoria)
+-- Elite Shop — 005: Triggers (perfis, histórico, notificações, auditoria)
 -- =====================================================================
 
 -- updated_at automático
@@ -1009,7 +1009,7 @@ begin
       body := format('A encomenda %s está a ser processada.', p_order.order_code);
     when 'completed' then
       ntype := 'order_completed'; title := 'Encomenda concluída';
-      body := format('A encomenda %s foi concluída: %s creditado no ID %s. Obrigado por comprar na KET SHOP!', p_order.order_code, v_product, p_order.player_id);
+      body := format('A encomenda %s foi concluída: %s creditado no ID %s. Obrigado por comprar na Elite Shop!', p_order.order_code, v_product, p_order.player_id);
     when 'cancelled' then
       ntype := 'order_status'; title := 'Encomenda cancelada';
       body := format('A encomenda %s foi cancelada.%s', p_order.order_code,
@@ -1080,7 +1080,7 @@ end $$;
 
 -- >>>>>>>>>> migrations/006_realtime_and_grants.sql
 -- =====================================================================
--- KET SHOP — 006: Realtime e permissões de execução
+-- Elite Shop — 006: Realtime e permissões de execução
 -- =====================================================================
 
 -- Realtime (postgres_changes respeita RLS: cada cliente só recebe o que pode ler)
@@ -1128,9 +1128,47 @@ grant execute on function public.setting_bool(text, boolean)                    
 grant select on public.admin_customer_overview to authenticated;
 revoke all on public.admin_customer_overview from anon;
 
+-- >>>>>>>>>> migrations/007_elite_shop_rename.sql
+-- =====================================================================
+-- Elite Shop — 007: mudança de nome (antes "KET SHOP")
+-- Para quem JÁ instalou a base de dados: execute só este ficheiro no SQL Editor.
+-- Novas encomendas passam a ter o código ELT-AAMMDD-XXXXXX.
+-- As encomendas antigas (KET-...) continuam válidas.
+-- =====================================================================
+do $$
+begin
+  if exists (select 1 from pg_constraint where conrelid = 'public.orders'::regclass and conname = 'orders_order_code_check') then
+    alter table public.orders drop constraint orders_order_code_check;
+  end if;
+  alter table public.orders add constraint orders_order_code_check
+    check (order_code ~ '^(ELT|KET)-[0-9]{6}-[A-Z0-9]{6}$');
+end $$;
+
+create or replace function public.generate_order_code()
+returns text language plpgsql volatile set search_path = '' as $$
+declare
+  v_alphabet constant text := 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  v_code text;
+  v_suffix text;
+  i int;
+begin
+  loop
+    v_suffix := '';
+    for i in 1..6 loop
+      v_suffix := v_suffix || substr(v_alphabet, 1 + floor(random() * length(v_alphabet))::int, 1);
+    end loop;
+    v_code := 'ELT-' || to_char(now() at time zone 'Africa/Luanda', 'YYMMDD') || '-' || v_suffix;
+    exit when not exists (select 1 from public.orders o where o.order_code = v_code);
+  end loop;
+  return v_code;
+end $$;
+
+update public.app_settings set value = '"Elite Shop"'::jsonb
+ where key = 'store_name' and value = '"KET SHOP"'::jsonb;
+
 -- >>>>>>>>>> policies/001_rls_policies.sql
 -- =====================================================================
--- KET SHOP — Políticas RLS (Row Level Security)
+-- Elite Shop — Políticas RLS (Row Level Security)
 -- Regra geral:
 --   * cliente   -> só lê/escreve os SEUS dados
 --   * operator  -> gere encomendas, comprovativos, notificações
@@ -1281,7 +1319,7 @@ grant select on public.products, public.product_categories, public.app_settings 
 
 -- >>>>>>>>>> storage/001_storage_bucket_and_policies.sql
 -- =====================================================================
--- KET SHOP — Storage privado para comprovativos
+-- Elite Shop — Storage privado para comprovativos
 -- Caminho obrigatório:  payment-proofs/<user_id>/<order_id>/<ficheiro>.<jpg|jpeg|png|webp>
 -- =====================================================================
 
@@ -1324,7 +1362,7 @@ create policy "ketshop proofs delete admin" on storage.objects
 
 -- >>>>>>>>>> seed/001_seed_catalog_and_settings.sql
 -- =====================================================================
--- KET SHOP — Dados iniciais (catálogo Free Fire, métodos e definições)
+-- Elite Shop — Dados iniciais (catálogo Free Fire, métodos e definições)
 -- Pode ser reexecutado: usa ON CONFLICT pelos campos únicos.
 -- Os preços aqui são apenas o ponto de partida: a app lê SEMPRE da base
 -- de dados e o administrador altera-os no painel sem novo APK.
@@ -1388,7 +1426,7 @@ where not exists (select 1 from public.payment_methods pm where pm.type = v.type
 
 -- Definições (valores de contacto vazios: preencher no painel)
 insert into public.app_settings (key, value, description, is_public) values
-  ('store_name',            '"KET SHOP"',            'Nome da loja', true),
+  ('store_name',            '"Elite Shop"',            'Nome da loja', true),
   ('support_whatsapp',      '""',                    'Número WhatsApp de suporte (formato internacional, ex.: 244XXXXXXXXX)', true),
   ('support_email',         '""',                    'E-mail de suporte', true),
   ('support_phone',         '""',                    'Telefone de suporte', true),

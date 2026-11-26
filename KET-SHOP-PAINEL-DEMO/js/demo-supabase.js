@@ -1,4 +1,4 @@
-/* KET SHOP — MODO DEMONSTRAÇÃO
+/* Elite Shop — MODO DEMONSTRAÇÃO
    Substitui o Supabase por dados de exemplo guardados no navegador.
    Não envia nem recebe dados reais. Serve apenas para mostrar o painel. */
 (function () {
@@ -45,7 +45,7 @@
     mime_type: "image/jpeg", size_bytes: 380000 + i * 7000, created_at: o.payment_submitted_at, review_notes: o.rejection_reason }));
   const history = (o) => [{ new_status: "pending_payment", created_at: o.created_at, note: "Encomenda criada" }].concat(o.status === "pending_payment" ? [] :
     [{ new_status: "proof_submitted", created_at: o.payment_submitted_at, note: "Comprovativo enviado pelo cliente" }]).concat(
-    ["proof_submitted", "pending_payment"].includes(o.status) ? [] : [{ new_status: o.status, created_at: o.updated_at, note: o.rejection_reason || o.cancel_reason, profiles: { full_name: "Equipa KET SHOP" } }]);
+    ["proof_submitted", "pending_payment"].includes(o.status) ? [] : [{ new_status: o.status, created_at: o.updated_at, note: o.rejection_reason || o.cancel_reason, profiles: { full_name: "Equipa Elite Shop" } }]);
   const notifications = orders.slice(0, 8).map((o, i) => ({ id: "n" + i, type: ["order_created", "proof_received", "payment_approved", "order_completed"][i % 4],
     title: ["Encomenda recebida", "Comprovativo recebido", "Pagamento aprovado", "Encomenda concluída"][i % 4], is_read: i > 2, created_at: o.updated_at, profiles: o.profiles }))
     .concat([{ id: "ng", type: "general", title: "Promoção de fim-de-semana", is_read: false, created_at: iso(now - 2 * D), profiles: users[0] }]);
@@ -53,8 +53,8 @@
   const PAID = orders.filter((o) => paid.includes(o.status));
   const customers = users.map((u) => { const mine = orders.filter((o) => o.user_id === u.id);
     return Object.assign({}, u, { roles: ["customer"], orders_count: mine.length, total_spent_kz: mine.filter((o) => paid.includes(o.status)).reduce((a, o) => a + o.total_kz, 0), last_order_at: mine[0] && mine[0].created_at }); })
-    .concat([{ id: "adm", full_name: "Administrador Demo", email: "demo@ketshop.ao", roles: ["admin", "customer"], orders_count: 0, total_spent_kz: 0, created_at: iso(now - 30 * D), is_blocked: false }]);
-  const settings = [["store_name", "KET SHOP"], ["support_whatsapp", "244900000000"], ["support_email", "suporte@exemplo.ao"], ["support_hours", "Seg–Sáb, 08h–20h"],
+    .concat([{ id: "adm", full_name: "Administrador Demo", email: "demo@eliteshop.ao", roles: ["admin", "customer"], orders_count: 0, total_spent_kz: 0, created_at: iso(now - 30 * D), is_blocked: false }]);
+  const settings = [["store_name", "Elite Shop"], ["support_whatsapp", "244900000000"], ["support_email", "suporte@exemplo.ao"], ["support_hours", "Seg–Sáb, 08h–20h"],
     ["maintenance_mode", false], ["announcement", ""], ["min_android_version", 1], ["admin_order_alert_sound", true], ["terms_text", ""], ["privacy_text", ""]]
     .map(([key, value]) => ({ key, value, is_public: key !== "admin_order_alert_sound", updated_at: iso(now - D) }));
   const audit = orders.slice(0, 10).map((o, i) => ({ id: i, action: i % 3 ? "order.status_changed" : "update", entity: i % 3 ? "orders" : "products", entity_id: i % 3 ? o.id : "p1",
@@ -112,7 +112,7 @@
     },
   };
   window.supabase = { createClient: () => ({
-    auth: { getSession: async () => ({ data: { session: { user: { id: "adm", email: "demo@ketshop.ao", user_metadata: { full_name: "Administrador Demo" } } } } }),
+    auth: { getSession: async () => ({ data: { session: { user: { id: "adm", email: "demo@eliteshop.ao", user_metadata: { full_name: "Administrador Demo" } } } } }),
             onAuthStateChange: () => {}, signOut: async () => ({}), signInWithPassword: async () => ({ error: null }), updateUser: async () => ({ error: null }) },
     rpc: async (n, args) => {
       if (n.startsWith("admin_update") || n.startsWith("admin_set") || n === "admin_send_notification") { demoBlocked(); return { data: null, error: { message: "DEMO: Modo demonstração — as alterações não são guardadas." } }; }

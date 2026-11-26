@@ -1,5 +1,5 @@
 /* =====================================================================
-   KET SHOP — núcleo do painel (autenticação, layout, utilitários)
+   Elite Shop — núcleo do painel (autenticação, layout, utilitários)
    A segurança real está no Supabase (RLS + funções SQL). Esconder
    botões aqui é apenas conveniência de interface.
    ===================================================================== */
@@ -257,7 +257,7 @@
     document.body.innerHTML =
       `<div class="auth-page"><div class="card auth-card">
          <img class="logo" src="assets/logo.svg" alt="">
-         <h1>KET SHOP</h1>
+         <h1>Elite Shop</h1>
          <div class="alert warning">O painel ainda não está configurado.<br>
          Edite <b>admin-web/js/config.js</b> com o <i>Project URL</i> e a chave <i>anon public</i> do Supabase
          (ver documentation/ADMIN_DEPLOYMENT.md).</div>
@@ -312,7 +312,7 @@
            ${n.badge ? '<span class="badge hidden" id="nav-pending-badge"></span>' : ""}
          </a>`).join("");
       sidebar.innerHTML =
-        `<div class="brand"><img src="assets/logo.svg" alt=""><strong>KET SHOP</strong></div>
+        `<div class="brand"><img src="assets/logo.svg" alt=""><strong>Elite Shop</strong></div>
          ${links}
          <div class="spacer"></div>
          <button class="nav-link btn-ghost" id="logout-btn" style="border:0;background:none;cursor:pointer;font:inherit;text-align:left">
@@ -333,7 +333,7 @@
     let ov = document.querySelector(".overlay");
     if (!ov) { ov = document.createElement("div"); ov.className = "overlay"; document.body.appendChild(ov); }
     ov.onclick = () => document.body.classList.remove("nav-open");
-    document.title = (title ? title + " · " : "") + "KET SHOP Admin";
+    document.title = (title ? title + " · " : "") + "Elite Shop Admin";
   }
 
   async function refreshPendingBadge() {

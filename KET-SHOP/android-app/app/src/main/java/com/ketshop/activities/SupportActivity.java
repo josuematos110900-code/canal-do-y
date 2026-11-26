@@ -66,7 +66,7 @@ public class SupportActivity extends BaseActivity {
             em.setText(email);
             em.setOnClickListener(v -> {
                 Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
-                i.putExtra(Intent.EXTRA_SUBJECT, orderCode != null ? "KET SHOP — " + orderCode : "KET SHOP — Suporte");
+                i.putExtra(Intent.EXTRA_SUBJECT, orderCode != null ? "Elite Shop — " + orderCode : "Elite Shop — Suporte");
                 i.putExtra(Intent.EXTRA_TEXT, msg);
                 open(i);
             });

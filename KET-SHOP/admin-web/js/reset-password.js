@@ -32,7 +32,7 @@
       const { error } = await KS.sb.auth.updateUser({ password: p1 });
       if (error) return show(KS.errMsg(error));
       fields.classList.add("hidden");
-      show("Palavra-passe alterada. Já pode iniciar sessão na app KET SHOP.", "success");
+      show("Palavra-passe alterada. Já pode iniciar sessão na app Elite Shop.", "success");
       await KS.sb.auth.signOut();
     });
   });

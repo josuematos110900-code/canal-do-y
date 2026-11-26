@@ -65,7 +65,7 @@
         <!-- Fornece à app de câmara um ficheiro temporário no cache privado -->
         <provider
             android:name=".utils.ProofFileProvider"
-            android:authorities="com.ketshop.proofprovider"
+            android:authorities="${applicationId}.proofprovider"
             android:exported="false"
             android:grantUriPermissions="true" />
 

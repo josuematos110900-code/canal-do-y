@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">KET SHOP</string>
+    <string name="app_name">Elite Shop</string>
     <string name="splash_tagline">Diamantes e passes Free Fire em Kwanzas</string>
     <string name="dash">—</string>
 
@@ -114,7 +114,7 @@
     <string name="details_base">Base</string>
     <string name="details_bonus">Bónus</string>
     <string name="details_total">Total</string>
-    <string name="details_on_demand">Este pacote é exclusivamente por encomenda. A equipa KET SHOP confirma o prazo de entrega depois de validar o pagamento.</string>
+    <string name="details_on_demand">Este pacote é exclusivamente por encomenda. A equipa Elite Shop confirma o prazo de entrega depois de validar o pagamento.</string>
     <string name="details_description">Descrição</string>
     <string name="details_no_description">Sem descrição.</string>
     <string name="details_how_it_works">Como funciona</string>
@@ -191,7 +191,7 @@
     <string name="proof_registering">A registar o comprovativo…</string>
     <string name="proof_retry_register">Tentar registar novamente</string>
     <string name="proof_wait_upload">Aguarde o fim do envio.</string>
-    <string name="proof_privacy">O comprovativo fica num armazenamento privado: só você e a equipa autorizada da KET SHOP o podem ver.</string>
+    <string name="proof_privacy">O comprovativo fica num armazenamento privado: só você e a equipa autorizada da Elite Shop o podem ver.</string>
     <string name="proof_confirm_title">Enviar comprovativo?</string>
     <string name="proof_confirm_message">Confirme que esta imagem corresponde ao pagamento de %2$s da encomenda %1$s.</string>
     <string name="proof_success_title">Comprovativo enviado!</string>
@@ -266,13 +266,13 @@
     <!-- Suporte -->
     <string name="support_title">Suporte</string>
     <string name="support_heading">Como podemos ajudar?</string>
-    <string name="support_subtitle">Fale com a equipa KET SHOP pelos canais oficiais.</string>
+    <string name="support_subtitle">Fale com a equipa Elite Shop pelos canais oficiais.</string>
     <string name="support_about_order">Pedido de ajuda sobre a encomenda %1$s.</string>
     <string name="support_not_configured">Os contactos de suporte ainda não foram configurados pela loja.</string>
     <string name="support_whatsapp">Falar por WhatsApp</string>
     <string name="support_faq">Perguntas frequentes</string>
-    <string name="support_message_order">Olá KET SHOP, preciso de ajuda com a encomenda %1$s.</string>
-    <string name="support_message_general">Olá KET SHOP, preciso de ajuda.</string>
+    <string name="support_message_order">Olá Elite Shop, preciso de ajuda com a encomenda %1$s.</string>
+    <string name="support_message_general">Olá Elite Shop, preciso de ajuda.</string>
     <string name="support_no_app">Não existe nenhuma app instalada para abrir este contacto.</string>
 
     <!-- Definições -->
@@ -298,7 +298,7 @@
     <string name="settings_delete_message">Esta acção é permanente. Encomendas já concluídas são mantidas de forma anónima por motivos contabilísticos. Escreva ELIMINAR para confirmar.</string>
     <string name="settings_delete_type">Escreva ELIMINAR para confirmar.</string>
     <string name="settings_deleted">A sua conta foi eliminada.</string>
-    <string name="settings_version">KET SHOP · versão %1$s</string>
+    <string name="settings_version">Elite Shop · versão %1$s</string>
 
     <!-- Legais -->
     <string name="terms_title">Termos e Condições</string>
@@ -308,7 +308,7 @@
 
     <!-- Actualização obrigatória -->
     <string name="update_required_title">Actualização necessária</string>
-    <string name="update_required_message">Esta versão da KET SHOP já não é suportada. Instale a versão mais recente para continuar.</string>
+    <string name="update_required_message">Esta versão da Elite Shop já não é suportada. Instale a versão mais recente para continuar.</string>
 
     <!-- FAQ -->
     <string-array name="faq_questions">
@@ -325,6 +325,6 @@
         <item>Veja o motivo indicado na encomenda e envie um novo comprovativo pela app. Se tiver dúvidas, contacte o suporte com o código da encomenda.</item>
         <item>Sim, enquanto o pagamento não tiver sido enviado ou se tiver sido rejeitado. Depois disso, contacte o suporte.</item>
         <item>São pacotes que não estão disponíveis de imediato. A equipa confirma o prazo de entrega depois de validar o pagamento.</item>
-        <item>A KET SHOP não recebe dados de cartão. Os comprovativos ficam num armazenamento privado acessível apenas a si e à equipa autorizada.</item>
+        <item>A Elite Shop não recebe dados de cartão. Os comprovativos ficam num armazenamento privado acessível apenas a si e à equipa autorizada.</item>
     </string-array>
 </resources>

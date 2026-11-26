@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KET SHOP"
+rootProject.name = "Elite Shop"
 include ':app'

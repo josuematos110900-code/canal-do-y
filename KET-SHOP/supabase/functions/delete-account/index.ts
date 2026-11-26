@@ -1,5 +1,5 @@
 // =====================================================================
-// KET SHOP — Edge Function: delete-account
+// Elite Shop — Edge Function: delete-account
 // Permite ao cliente eliminar a sua conta a partir da app.
 // A chave service_role existe APENAS aqui (variável de ambiente do
 // Supabase Edge Runtime) e nunca é enviada para a app ou para o painel.

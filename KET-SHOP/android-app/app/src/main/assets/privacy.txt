@@ -1,4 +1,4 @@
-POLÍTICA DE PRIVACIDADE — KET SHOP
+POLÍTICA DE PRIVACIDADE — Elite Shop
 (Modelo base. Deve ser revisto pelo responsável pelo tratamento de dados e adaptado à legislação angolana aplicável, nomeadamente a Lei n.º 22/11, de 17 de Junho — Lei da Protecção de Dados Pessoais. A versão publicada no painel substitui este texto.)
 
 1. DADOS RECOLHIDOS
@@ -12,7 +12,7 @@ Os dados são usados exclusivamente para: gerir a conta; processar, verificar e 
 
 3. ARMAZENAMENTO E SEGURANÇA
 • Os dados são guardados na infraestrutura Supabase, com acesso protegido por autenticação e regras de segurança ao nível de cada registo (Row Level Security).
-• Os comprovativos são guardados num armazenamento privado: apenas o próprio utilizador e a equipa autorizada da KET SHOP os podem consultar.
+• Os comprovativos são guardados num armazenamento privado: apenas o próprio utilizador e a equipa autorizada da Elite Shop os podem consultar.
 • A app não recolhe dados de cartões bancários.
 
 4. PARTILHA

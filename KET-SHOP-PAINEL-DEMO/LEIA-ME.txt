@@ -1,4 +1,4 @@
-KET SHOP — PAINEL ADMIN (DEMONSTRAÇÃO)
+Elite Shop — PAINEL ADMIN (DEMONSTRAÇÃO)
 
 Esta pasta é uma versão de DEMONSTRAÇÃO do painel admin, com dados de exemplo.
 Não está ligada a nenhuma base de dados: não há login real, nada é guardado e

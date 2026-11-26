@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — 005: Triggers (perfis, histórico, notificações, auditoria)
+-- Elite Shop — 005: Triggers (perfis, histórico, notificações, auditoria)
 -- =====================================================================
 
 -- updated_at automático
@@ -97,7 +97,7 @@ begin
       body := format('A encomenda %s está a ser processada.', p_order.order_code);
     when 'completed' then
       ntype := 'order_completed'; title := 'Encomenda concluída';
-      body := format('A encomenda %s foi concluída: %s creditado no ID %s. Obrigado por comprar na KET SHOP!', p_order.order_code, v_product, p_order.player_id);
+      body := format('A encomenda %s foi concluída: %s creditado no ID %s. Obrigado por comprar na Elite Shop!', p_order.order_code, v_product, p_order.player_id);
     when 'cancelled' then
       ntype := 'order_status'; title := 'Encomenda cancelada';
       body := format('A encomenda %s foi cancelada.%s', p_order.order_code,

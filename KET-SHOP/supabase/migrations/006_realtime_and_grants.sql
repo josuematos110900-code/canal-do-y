@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — 006: Realtime e permissões de execução
+-- Elite Shop — 006: Realtime e permissões de execução
 -- =====================================================================
 
 -- Realtime (postgres_changes respeita RLS: cada cliente só recebe o que pode ler)

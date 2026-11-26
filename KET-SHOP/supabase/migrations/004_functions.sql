@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — 004: Funções (helpers de papéis + RPCs seguras)
+-- Elite Shop — 004: Funções (helpers de papéis + RPCs seguras)
 -- Todas as operações sensíveis passam por funções SECURITY DEFINER
 -- que validam auth.uid() e o papel no servidor. A app e o painel só
 -- usam a chave anon + JWT do utilizador.
@@ -66,7 +66,7 @@ begin
     for i in 1..6 loop
       v_suffix := v_suffix || substr(v_alphabet, 1 + floor(random() * length(v_alphabet))::int, 1);
     end loop;
-    v_code := 'KET-' || to_char(now() at time zone 'Africa/Luanda', 'YYMMDD') || '-' || v_suffix;
+    v_code := 'ELT-' || to_char(now() at time zone 'Africa/Luanda', 'YYMMDD') || '-' || v_suffix;
     exit when not exists (select 1 from public.orders o where o.order_code = v_code);
   end loop;
   return v_code;

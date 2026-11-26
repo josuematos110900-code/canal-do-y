@@ -1,4 +1,4 @@
-# Edge Functions — KET SHOP
+# Edge Functions — Elite Shop
 
 | Função | Para quê | Porque precisa de servidor |
 |---|---|---|

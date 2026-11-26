@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — Storage privado para comprovativos
+-- Elite Shop — Storage privado para comprovativos
 -- Caminho obrigatório:  payment-proofs/<user_id>/<order_id>/<ficheiro>.<jpg|jpeg|png|webp>
 -- =====================================================================
 

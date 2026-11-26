@@ -9,7 +9,7 @@
   KS.qs("#cust-export").onclick = () => {
     const out = [["Nome", "E-mail", "Telefone", "Papéis", "Encomendas", "Total gasto (Kz)", "Bloqueado", "Registo"]];
     filtered().forEach((c) => out.push([c.full_name, c.email, c.phone, (c.roles || []).join(","), c.orders_count, c.total_spent_kz, c.is_blocked ? "sim" : "não", KS.day(c.created_at)]));
-    KS.downloadCSV("clientes-ketshop.csv", out);
+    KS.downloadCSV("clientes-eliteshop.csv", out);
   };
 
   async function load() {

@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — 003: Índices
+-- Elite Shop — 003: Índices
 -- =====================================================================
 create index if not exists idx_user_roles_user            on public.user_roles (user_id);
 create index if not exists idx_products_category_sort     on public.products (category_id, sort_order);

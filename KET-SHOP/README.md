@@ -1,4 +1,4 @@
-# KET SHOP
+# Elite Shop
 
 Plataforma de venda de diamantes e passes **Free Fire** em Kwanzas: app Android (Java/XML, Android Studio), painel administrativo Web e backend Supabase.
 

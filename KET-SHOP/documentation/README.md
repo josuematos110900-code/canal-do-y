@@ -1,4 +1,4 @@
-# KET SHOP — Plataforma completa (Android + Painel Web + Supabase)
+# Elite Shop — Plataforma completa (Android + Painel Web + Supabase)
 
 Loja de diamantes, passes e assinaturas **Free Fire** com pagamento em Kwanzas, envio de comprovativo
 dentro da app e verificação pela equipa num painel Web.
@@ -76,7 +76,7 @@ KET-SHOP/
 
 **App Android (cliente):** splash animado, onboarding, registo/login/recuperação, catálogo dinâmico com
 pesquisa e categorias, detalhe do produto (base + bónus), ID do jogador com confirmação e ID guardado,
-resumo e confirmação, código único `KET-AAMMDD-XXXXXX`, escolha do método de pagamento com dados
+resumo e confirmação, código único `ELT-AAMMDD-XXXXXX`, escolha do método de pagamento com dados
 copiáveis, **envio de comprovativo** (galeria ou câmara, pré-visualização, remover/substituir, validação
 de MIME pelos bytes, compressão automática acima de 5 MB, barra de progresso, upload para Storage
 privado, registo na base de dados), acompanhamento com linha temporal e actualização automática,

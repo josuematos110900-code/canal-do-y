@@ -1,4 +1,4 @@
-# KET SHOP — regras ProGuard/R8 (apenas se activar minifyEnabled)
+# Elite Shop — regras ProGuard/R8 (apenas se activar minifyEnabled)
 # Os modelos são Serializable e passados por Intent.
 -keep class com.ketshop.models.** { *; }
 -keepclassmembers class * implements java.io.Serializable {

@@ -1,5 +1,5 @@
 -- =====================================================================
--- KET SHOP — Dados iniciais (catálogo Free Fire, métodos e definições)
+-- Elite Shop — Dados iniciais (catálogo Free Fire, métodos e definições)
 -- Pode ser reexecutado: usa ON CONFLICT pelos campos únicos.
 -- Os preços aqui são apenas o ponto de partida: a app lê SEMPRE da base
 -- de dados e o administrador altera-os no painel sem novo APK.
@@ -63,7 +63,7 @@ where not exists (select 1 from public.payment_methods pm where pm.type = v.type
 
 -- Definições (valores de contacto vazios: preencher no painel)
 insert into public.app_settings (key, value, description, is_public) values
-  ('store_name',            '"KET SHOP"',            'Nome da loja', true),
+  ('store_name',            '"Elite Shop"',            'Nome da loja', true),
   ('support_whatsapp',      '""',                    'Número WhatsApp de suporte (formato internacional, ex.: 244XXXXXXXXX)', true),
   ('support_email',         '""',                    'E-mail de suporte', true),
   ('support_phone',         '""',                    'Telefone de suporte', true),

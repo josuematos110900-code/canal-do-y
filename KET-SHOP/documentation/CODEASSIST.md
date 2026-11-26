@@ -21,12 +21,12 @@ mais recentes que a 21 estão todas protegidas por `Build.VERSION.SDK_INT`.
 
 ## 1. Copiar o projecto para o telemóvel
 
-1. Transfira `KET-SHOP-COMPLETO.zip` para o telemóvel.
+1. Transfira `ELITE-SHOP-COMPLETO.zip` para o telemóvel.
 2. Extraia com um gestor de ficheiros que suporte ZIP (ex.: ZArchiver, MiXplorer ou o gestor do sistema),
    ou no Termux:
    ```bash
    termux-setup-storage
-   cd ~/storage/downloads && unzip KET-SHOP-COMPLETO.zip
+   cd ~/storage/downloads && unzip ELITE-SHOP-COMPLETO.zip
    ```
 3. Copie a pasta **`KET-SHOP/android-app`** para a pasta de projectos do CodeAssist
    (normalmente `Armazenamento interno/CodeAssistProjects/`). Pode renomeá-la para `KetShop`.

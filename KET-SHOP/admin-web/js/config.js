@@ -1,5 +1,5 @@
 /* =====================================================================
-   KET SHOP — Configuração do painel
+   Elite Shop — Configuração do painel
    Substitua pelos valores do seu projecto (Project Settings -> API).
    Use APENAS a chave publicável (sb_publishable_...) ou "anon public". NUNCA coloque aqui a service_role:
    este ficheiro é público e qualquer pessoa o pode ler no navegador.
