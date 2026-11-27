@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Elite Shop Admin</title>
+</head>
+<body><div style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:linear-gradient(90deg,#6a1bcf,#ff4fd8);color:#fff;text-align:center;font:600 12px system-ui;padding:6px">DEMONSTRAÇÃO — dados de exemplo · as alterações não são guardadas</div>
+  <div class="auth-page"><div class="spinner"></div></div>
+  <script src="js/demo-supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script>
+    (async function () {
+      if (!KS.sb) { location.replace("login.html"); return; }
+      const { data } = await KS.sb.auth.getSession();
+      location.replace("dashboard.html");
+    })();
+  </script>
+</body>
+</html>

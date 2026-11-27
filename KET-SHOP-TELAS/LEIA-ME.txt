@@ -1,0 +1,12 @@
+Elite Shop — imagens das telas
+
+app-android/
+  00-todas-as-telas.png  -> as 21 telas numa só imagem
+  01 a 21                -> cada tela em alta resolução (720x1560)
+  Nota: são reconstruções fiéis feitas a partir dos layouts, cores, ícones e textos
+  do projecto Android, com dados de exemplo. Não são capturas de um telemóvel
+  (não havia emulador Android disponível). Na app real o conteúdo vem do Firebase.
+
+painel-admin/
+  Capturas reais do painel a funcionar no painel (dados de exemplo) (computador 1366 px
+  e telemóvel 390 px), incluindo o detalhe de uma encomenda com comprovativo.

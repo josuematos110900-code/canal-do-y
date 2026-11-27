@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Relatórios · Elite Shop Admin</title>
+</head>
+<body><div style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:linear-gradient(90deg,#6a1bcf,#ff4fd8);color:#fff;text-align:center;font:600 12px system-ui;padding:6px">DEMONSTRAÇÃO — dados de exemplo · as alterações não são guardadas</div>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content">
+        <div class="card">
+          <div class="toolbar">
+            <div><label for="rep-from">De</label><input type="date" id="rep-from"></div>
+            <div><label for="rep-to">Até</label><input type="date" id="rep-to"></div>
+            <div><label>&nbsp;</label><div class="row">
+              <button class="btn btn-sm btn-ghost" data-range="7">7 dias</button>
+              <button class="btn btn-sm btn-ghost" data-range="30">30 dias</button>
+              <button class="btn btn-sm btn-ghost" data-range="month">Este mês</button></div></div>
+            <button class="btn btn-primary" id="rep-run">Gerar relatório</button>
+            <button class="btn btn-outline" id="rep-export" disabled>Exportar CSV</button>
+          </div>
+        </div>
+        <div class="grid stats" style="margin-top:16px">
+          <div class="card stat"><div class="label">Receita</div><div class="value" id="rep-revenue">—</div><div class="hint">aprovadas, em processamento e concluídas</div></div>
+          <div class="card stat"><div class="label">Encomendas pagas</div><div class="value" id="rep-paid">—</div><div class="hint" id="rep-orders">—</div></div>
+          <div class="card stat"><div class="label">Ticket médio</div><div class="value" id="rep-avg">—</div></div>
+          <div class="card stat"><div class="label">Rejeitadas / canceladas</div><div class="value" id="rep-lost">—</div></div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-header"><h2>Receita por dia</h2></div>
+          <div class="bars" id="rep-chart"></div>
+        </div>
+        <div class="grid two" style="margin-top:16px">
+          <div class="card"><div class="card-header"><h2>Por produto</h2></div>
+            <div class="table-wrap"><table style="min-width:360px"><thead><tr><th>Produto</th><th class="right">Qtd.</th><th class="right">Receita</th></tr></thead><tbody id="rep-products"></tbody></table></div></div>
+          <div class="card"><div class="card-header"><h2>Por método de pagamento</h2></div>
+            <div class="table-wrap"><table style="min-width:360px"><thead><tr><th>Método</th><th class="right">Encomendas</th><th class="right">Receita</th></tr></thead><tbody id="rep-methods"></tbody></table></div></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div id="toast-root"></div>
+  <script src="js/demo-supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/reports.js"></script>
+</body>
+</html>

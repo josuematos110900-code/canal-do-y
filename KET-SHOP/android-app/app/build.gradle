@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Assinatura de release (opcional): crie android-app/keystore.properties (NÃO enviar para o Git) com:
+//   storeFile=/caminho/para/ketshop-release.jks
+//   storePassword=...
+//   keyAlias=ketshop
+//   keyPassword=...
+// Sem este ficheiro, use Build > Generate Signed App Bundle / APK no Android Studio.
+def keystorePropsFile = rootProject.file('keystore.properties')
+def keystoreProps = new Properties()
+if (keystorePropsFile.exists()) {
+    keystorePropsFile.withInputStream { keystoreProps.load(it) }
+}
+
+android {
+    namespace 'com.ketshop'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.eliteshop.app"
+        minSdk 21
+        targetSdk 36
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        if (keystorePropsFile.exists()) {
+            release {
+                storeFile file(keystoreProps['storeFile'])
+                storePassword keystoreProps['storePassword']
+                keyAlias keystoreProps['keyAlias']
+                keyPassword keystoreProps['keyPassword']
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (keystorePropsFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+    // Nenhuma dependência externa: apenas o Android SDK
+    // (android.*, org.json, java.net.HttpURLConnection).
+}

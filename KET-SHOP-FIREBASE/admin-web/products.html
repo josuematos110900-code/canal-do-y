@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Produtos e preços · KET SHOP Admin</title>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content">
+        <div class="tabs" id="prod-tabs">
+          <button class="tab active" data-tab="products">Produtos</button>
+          <button class="tab" data-tab="categories">Categorias</button>
+        </div>
+        <div class="alert warning hidden" id="prod-readonly">Modo de leitura: apenas administradores podem alterar produtos, preços e categorias (garantido pelas políticas RLS).</div>
+        <section id="tab-products" class="card">
+          <div class="toolbar">
+            <div class="search"><label for="prod-search">Pesquisar</label><input id="prod-search" placeholder="Nome ou SKU"></div>
+            <div><label for="prod-cat-filter">Categoria</label><select id="prod-cat-filter"><option value="">Todas</option></select></div>
+            <button class="btn btn-primary admin-only" id="prod-new">Novo produto</button>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Ordem</th><th>Produto</th><th>Categoria</th><th>Quantidade</th><th class="right">Preço</th><th>Estado</th><th></th></tr></thead>
+            <tbody id="prod-body"><tr><td colspan="7" class="empty"><span class="spinner"></span></td></tr></tbody>
+          </table></div>
+          <p class="small muted">Os preços são lidos pela app em cada carregamento: alterações aqui ficam visíveis aos clientes sem novo APK. Encomendas já criadas mantêm o preço do momento da compra.</p>
+        </section>
+        <section id="tab-categories" class="card hidden">
+          <div class="toolbar"><div class="grow"></div><button class="btn btn-primary admin-only" id="cat-new">Nova categoria</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Ordem</th><th>Nome</th><th>Slug</th><th>Jogo</th><th>Estado</th><th></th></tr></thead>
+            <tbody id="cat-body"></tbody>
+          </table></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <div id="toast-root"></div>
+  <script src="js/config.js"></script>
+  <script type="module" src="js/products.js"></script>
+</body>
+</html>

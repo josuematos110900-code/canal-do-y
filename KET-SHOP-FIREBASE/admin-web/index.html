@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>KET SHOP Admin</title>
+</head>
+<body>
+  <div class="auth-page"><div class="spinner"></div></div>
+  <script src="js/config.js"></script>
+  <script type="module">
+    import { KS } from "./js/core.js";
+    if (!KS.configured) location.replace("login.html");
+    else KS.currentUser().then((u) => location.replace(u ? "dashboard.html" : "login.html"));
+  </script>
+</body>
+</html>

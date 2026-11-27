@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Elite Shop</string>
+    <string name="splash_tagline">Diamantes e passes Free Fire em Kwanzas</string>
+    <string name="dash">—</string>
+
+    <!-- Acções -->
+    <string name="action_back">Voltar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_close">Fechar</string>
+    <string name="action_continue">Continuar</string>
+    <string name="action_copy">Copiar</string>
+    <string name="action_delete">Eliminar</string>
+    <string name="action_more">Mais opções</string>
+    <string name="action_next">Seguinte</string>
+    <string name="action_ok">OK</string>
+    <string name="action_refresh">Actualizar</string>
+    <string name="action_retry">Tentar novamente</string>
+    <string name="action_save">Guardar alterações</string>
+    <string name="action_skip">Saltar</string>
+    <string name="action_start">Começar</string>
+    <string name="action_view">Ver</string>
+    <string name="error_title">Não foi possível concluir</string>
+
+    <!-- Navegação -->
+    <string name="nav_home">Início</string>
+    <string name="nav_products">Loja</string>
+    <string name="nav_orders">Pedidos</string>
+    <string name="nav_notifications">Alertas</string>
+    <string name="nav_profile">Perfil</string>
+
+    <!-- Descrições de acessibilidade -->
+    <string name="cd_notification_icon">Ícone da notificação</string>
+    <string name="cd_onboarding_icon">Ilustração</string>
+    <string name="cd_payment_icon">Ícone do método de pagamento</string>
+    <string name="cd_product_icon">Imagem do produto</string>
+    <string name="cd_proof_preview">Pré-visualização do comprovativo</string>
+    <string name="cd_selected">Seleccionado</string>
+    <string name="cd_toggle_password">Mostrar ou ocultar palavra-passe</string>
+
+    <!-- Onboarding -->
+    <string name="onb_title_1">Recarga rápida</string>
+    <string name="onb_text_1">Diamantes, passes e assinaturas Free Fire com preços em Kwanzas, directamente no seu ID de jogador.</string>
+    <string name="onb_title_2">Pagamento simples</string>
+    <string name="onb_text_2">Pague por transferência, Multicaixa Express, PayPay AO ou referência e envie o comprovativo dentro da app.</string>
+    <string name="onb_title_3">Acompanhe tudo</string>
+    <string name="onb_text_3">Veja o estado da encomenda em cada etapa e receba alertas quando o pagamento for aprovado e o carregamento concluído.</string>
+
+    <!-- Login / Registo / Recuperação -->
+    <string name="login_title">Bem-vindo</string>
+    <string name="login_subtitle">Inicie sessão para fazer as suas encomendas</string>
+    <string name="login_forgot">Esqueceu a palavra-passe?</string>
+    <string name="login_submit">Entrar</string>
+    <string name="login_no_account">Ainda não tem conta?</string>
+    <string name="login_register">Criar conta</string>
+    <string name="account_blocked">A sua conta está bloqueada. Contacte o suporte.</string>
+    <string name="label_email">E-mail</string>
+    <string name="label_password">Palavra-passe</string>
+    <string name="label_password_confirm">Confirmar palavra-passe</string>
+    <string name="label_full_name">Nome completo</string>
+    <string name="label_phone">Telefone (opcional)</string>
+    <string name="hint_email">nome@exemplo.com</string>
+    <string name="hint_password">A sua palavra-passe</string>
+    <string name="hint_new_password">Mínimo 8 caracteres</string>
+    <string name="hint_password_confirm">Repita a palavra-passe</string>
+    <string name="hint_full_name">Nome e apelido</string>
+    <string name="hint_phone">923 456 789</string>
+    <string name="register_toolbar">Criar conta</string>
+    <string name="register_title">Criar conta</string>
+    <string name="register_subtitle">Leva menos de um minuto.</string>
+    <string name="register_password_rules">A palavra-passe deve ter pelo menos 8 caracteres, com letras e números.</string>
+    <string name="register_accept_terms">Li e aceito os Termos e Condições e a Política de Privacidade.</string>
+    <string name="register_terms_required">É necessário aceitar os Termos e a Política de Privacidade.</string>
+    <string name="register_submit">Criar conta</string>
+    <string name="register_have_account">Já tenho conta — entrar</string>
+    <string name="register_confirm_email_title">Confirme o seu e-mail</string>
+    <string name="register_confirm_email_message">Enviámos uma ligação de confirmação para %1$s. Abra o e-mail, confirme a conta e depois inicie sessão.</string>
+    <string name="forgot_toolbar">Recuperar acesso</string>
+    <string name="forgot_title">Recuperar palavra-passe</string>
+    <string name="forgot_subtitle">Indique o e-mail da sua conta. Vamos enviar uma ligação para definir uma nova palavra-passe.</string>
+    <string name="forgot_submit">Enviar ligação</string>
+    <string name="forgot_resend">Reenviar ligação</string>
+    <string name="forgot_sent">Se existir uma conta com %1$s, receberá um e-mail em breve. Verifique também a pasta de spam.</string>
+    <string name="forgot_back">Voltar ao início de sessão</string>
+
+    <!-- Home -->
+    <string name="home_default_name">Jogador</string>
+    <string name="home_hero_kicker">FREE FIRE</string>
+    <string name="home_hero_title">Recarregue já os seus diamantes</string>
+    <string name="home_hero_text">Entrega directa no seu ID.</string>
+    <string name="home_hero_cta">Ver loja</string>
+    <string name="home_active_order">ENCOMENDA EM CURSO</string>
+    <string name="home_track_order">Acompanhar encomenda</string>
+    <string name="home_categories">Categorias</string>
+    <string name="home_featured">Mais procurados</string>
+    <string name="home_see_all">Ver todos</string>
+    <string name="home_shortcut_orders">Os meus pedidos</string>
+    <string name="home_shortcut_support">Suporte</string>
+
+    <!-- Produtos -->
+    <string name="products_title">Loja Free Fire</string>
+    <string name="products_search_hint">Procurar produto</string>
+    <string name="products_empty">Ainda não há produtos disponíveis.</string>
+    <string name="products_no_results">Nenhum produto corresponde à pesquisa.</string>
+    <string name="badge_on_demand">ENCOMENDA</string>
+    <string name="badge_popular">TOP</string>
+    <string name="filter_all">Todos</string>
+    <string name="filter_active">Em curso</string>
+    <string name="filter_completed">Concluídas</string>
+    <string name="filter_cancelled">Canceladas</string>
+
+    <!-- Detalhes do produto -->
+    <string name="details_title">Detalhes</string>
+    <string name="details_base">Base</string>
+    <string name="details_bonus">Bónus</string>
+    <string name="details_total">Total</string>
+    <string name="details_on_demand">Este pacote é exclusivamente por encomenda. A equipa Elite Shop confirma o prazo de entrega depois de validar o pagamento.</string>
+    <string name="details_description">Descrição</string>
+    <string name="details_no_description">Sem descrição.</string>
+    <string name="details_how_it_works">Como funciona</string>
+    <string name="details_steps">1. Indique o ID do jogador.\n2. Confirme a encomenda e escolha o método de pagamento.\n3. Pague e envie o comprovativo na app.\n4. Após a verificação, o carregamento é feito no seu ID.</string>
+    <string name="details_buy">Comprar agora</string>
+    <string name="details_buy_on_demand">Fazer encomenda</string>
+
+    <!-- ID do jogador -->
+    <string name="player_toolbar">ID do jogador</string>
+    <string name="player_title">Para quem é a recarga?</string>
+    <string name="player_subtitle">Introduza o ID Free Fire que vai receber o produto.</string>
+    <string name="player_use_saved">Usar ID guardado: %1$s</string>
+    <string name="label_player_id">ID do jogador</string>
+    <string name="label_player_id_confirm">Confirmar ID</string>
+    <string name="label_nickname">Nickname (opcional)</string>
+    <string name="hint_player_id">Ex.: 123456789</string>
+    <string name="hint_player_id_confirm">Repita o ID</string>
+    <string name="hint_nickname">Nome no jogo</string>
+    <string name="player_save_id">Guardar este ID neste dispositivo</string>
+    <string name="player_help">O ID está no perfil do jogo Free Fire (toque na sua foto de perfil; o número aparece por baixo do nome). Verifique com atenção: carregamentos num ID errado não podem ser revertidos.</string>
+    <string name="player_id_mismatch">Os IDs não coincidem.</string>
+
+    <!-- Confirmação -->
+    <string name="confirm_toolbar">Confirmar encomenda</string>
+    <string name="confirm_title">Resumo da encomenda</string>
+    <string name="confirm_subtitle">Verifique os dados antes de confirmar.</string>
+    <string name="confirm_total">Total a pagar</string>
+    <string name="label_notes">Observações (opcional)</string>
+    <string name="hint_notes">Alguma informação para a equipa?</string>
+    <string name="confirm_check_id">Confirmo que o ID do jogador está correcto.</string>
+    <string name="confirm_check_required">Confirme que o ID do jogador está correcto.</string>
+    <string name="confirm_price_note">O preço final é confirmado pelo servidor no momento da encomenda.</string>
+    <string name="confirm_submit">Confirmar encomenda</string>
+    <string name="confirm_created">Encomenda %1$s criada.</string>
+    <string name="summary_game">Jogo</string>
+    <string name="summary_product">Produto</string>
+    <string name="summary_amount">Quantidade</string>
+    <string name="summary_quantity">Unidades</string>
+    <string name="summary_player_id">ID do jogador</string>
+    <string name="summary_nickname">Nickname</string>
+
+    <!-- Pagamento -->
+    <string name="payment_toolbar">Pagamento</string>
+    <string name="payment_order_code">Código da encomenda</string>
+    <string name="payment_choose">Escolha como quer pagar</string>
+    <string name="payment_none">De momento não há métodos de pagamento activos. Tente mais tarde ou contacte o suporte.</string>
+    <string name="payment_missing_data">Este método ainda não tem os dados de pagamento configurados. Escolha outro método ou contacte o suporte.</string>
+    <string name="payment_use_code">Use o código da encomenda como descritivo/referência do pagamento, sempre que possível.</string>
+    <string name="payment_continue">Já paguei — enviar comprovativo</string>
+    <string name="payment_later">Pagar mais tarde</string>
+    <string name="pay_amount">Valor (Kz)</string>
+    <string name="pay_holder">Titular</string>
+    <string name="pay_bank">Banco</string>
+    <string name="pay_iban">IBAN</string>
+    <string name="pay_account">Número de conta</string>
+    <string name="pay_phone">Número</string>
+    <string name="pay_entity">Entidade</string>
+    <string name="pay_reference">Referência</string>
+    <string name="pay_description">Descritivo</string>
+
+    <!-- Comprovativo -->
+    <string name="proof_toolbar">Enviar comprovativo</string>
+    <string name="proof_title">Comprovativo de pagamento</string>
+    <string name="proof_subtitle">Envie uma fotografia ou captura de ecrã legível do talão ou da confirmação do pagamento.</string>
+    <string name="proof_tap_to_choose">Toque para escolher a imagem</string>
+    <string name="proof_formats">JPG, JPEG, PNG ou WEBP · máximo 5 MB</string>
+    <string name="proof_from_gallery">Galeria</string>
+    <string name="proof_from_camera">Câmara</string>
+    <string name="proof_remove">Remover imagem</string>
+    <string name="proof_replace">Substituir imagem</string>
+    <string name="proof_submit">Enviar comprovativo</string>
+    <string name="proof_uploading">A enviar…</string>
+    <string name="proof_progress">A carregar… %1$d%%</string>
+    <string name="proof_registering">A registar o comprovativo…</string>
+    <string name="proof_retry_register">Tentar registar novamente</string>
+    <string name="proof_wait_upload">Aguarde o fim do envio.</string>
+    <string name="proof_privacy">O comprovativo fica num armazenamento privado: só você e a equipa autorizada da Elite Shop o podem ver.</string>
+    <string name="proof_confirm_title">Enviar comprovativo?</string>
+    <string name="proof_confirm_message">Confirme que esta imagem corresponde ao pagamento de %2$s da encomenda %1$s.</string>
+    <string name="proof_success_title">Comprovativo enviado!</string>
+    <string name="proof_success_text">Recebemos o comprovativo da encomenda %1$s. Vai ser notificado assim que o pagamento for verificado.</string>
+    <string name="proof_success_track">Acompanhar encomenda</string>
+    <string name="proof_success_home">Voltar ao início</string>
+    <string name="proof_not_accepted">Esta encomenda não aceita comprovativos no estado actual (%1$s).</string>
+    <string name="proof_choose_method_first">Escolha primeiro o método de pagamento.</string>
+    <string name="proof_previous_rejected">O comprovativo anterior foi rejeitado. Motivo: %1$s</string>
+    <string name="proof_no_gallery">Não foi encontrada nenhuma app de galeria/ficheiros.</string>
+    <string name="proof_no_camera">Não foi encontrada nenhuma app de câmara.</string>
+    <string name="proof_camera_empty">A fotografia não foi guardada. Tente novamente.</string>
+
+    <!-- Acompanhamento -->
+    <string name="tracking_toolbar">Acompanhar encomenda</string>
+    <string name="tracking_progress">Progresso</string>
+    <string name="tracking_history">Histórico</string>
+    <string name="tracking_player">ID do jogador: %1$s</string>
+    <string name="tracking_updated_at">Actualização automática · %1$s</string>
+    <string name="tracking_status_changed">Estado actualizado: %1$s</string>
+    <string name="tracking_send_proof">Enviar comprovativo</string>
+    <string name="tracking_details">Ver detalhes</string>
+    <string name="tracking_rejected">Pagamento rejeitado. Motivo: %1$s. Pode enviar um novo comprovativo.</string>
+    <string name="tracking_cancelled">Encomenda cancelada. Motivo: %1$s</string>
+    <string name="tracking_completed">Encomenda concluída. O produto foi creditado no ID indicado.</string>
+    <string name="tracking_pending">A aguardar pagamento. Depois de pagar, envie o comprovativo.</string>
+    <string name="tracking_step_current">Etapa actual</string>
+    <string name="tracking_step_rejected">Envie um novo comprovativo</string>
+
+    <!-- Histórico / Detalhes -->
+    <string name="history_title">Os meus pedidos</string>
+    <string name="history_empty">Ainda não fez nenhuma encomenda.</string>
+    <string name="history_empty_filter">Não há encomendas neste filtro.</string>
+    <string name="order_details_toolbar">Detalhes da encomenda</string>
+    <string name="order_details_created">Criada em %1$s</string>
+    <string name="order_details_items">Produto</string>
+    <string name="order_details_payment">Pagamento</string>
+    <string name="order_details_proofs">Comprovativos</string>
+    <string name="order_details_method">Método</string>
+    <string name="order_details_no_method">Ainda não escolhido</string>
+    <string name="order_details_no_proofs">Ainda não foi enviado nenhum comprovativo.</string>
+    <string name="order_details_pay">Escolher pagamento</string>
+    <string name="order_details_loading_proof">A abrir comprovativo…</string>
+    <string name="order_details_proof_error">Não foi possível abrir a imagem.</string>
+    <string name="menu_copy_code">Copiar código</string>
+    <string name="menu_track">Acompanhar</string>
+    <string name="menu_support">Suporte</string>
+    <string name="menu_cancel_order">Cancelar encomenda</string>
+    <string name="cancel_title">Cancelar encomenda</string>
+    <string name="cancel_message">Tem a certeza de que quer cancelar a encomenda %1$s?</string>
+    <string name="cancel_reason_hint">Motivo (opcional)</string>
+    <string name="cancel_done">Encomenda cancelada.</string>
+
+    <!-- Notificações -->
+    <string name="notifications_title">Notificações</string>
+    <string name="notifications_empty">Sem notificações por agora.</string>
+    <string name="notifications_mark_all">Marcar todas como lidas</string>
+    <string name="notifications_delete_title">Eliminar notificação?</string>
+    <string name="notif_channel_name">Encomendas</string>
+    <string name="notif_channel_desc">Estado das encomendas e pagamentos</string>
+
+    <!-- Perfil -->
+    <string name="profile_stat_total">Pedidos</string>
+    <string name="profile_stat_active">Em curso</string>
+    <string name="profile_stat_done">Concluídos</string>
+    <string name="profile_edit">Dados pessoais</string>
+    <string name="profile_saved">Perfil actualizado.</string>
+    <string name="profile_menu_orders">Os meus pedidos</string>
+    <string name="profile_logout">Terminar sessão</string>
+    <string name="profile_logout_confirm">Quer terminar a sessão neste dispositivo?</string>
+
+    <!-- Suporte -->
+    <string name="support_title">Suporte</string>
+    <string name="support_heading">Como podemos ajudar?</string>
+    <string name="support_subtitle">Fale com a equipa Elite Shop pelos canais oficiais.</string>
+    <string name="support_about_order">Pedido de ajuda sobre a encomenda %1$s.</string>
+    <string name="support_not_configured">Os contactos de suporte ainda não foram configurados pela loja.</string>
+    <string name="support_whatsapp">Falar por WhatsApp</string>
+    <string name="support_faq">Perguntas frequentes</string>
+    <string name="support_message_order">Olá Elite Shop, preciso de ajuda com a encomenda %1$s.</string>
+    <string name="support_message_general">Olá Elite Shop, preciso de ajuda.</string>
+    <string name="support_no_app">Não existe nenhuma app instalada para abrir este contacto.</string>
+
+    <!-- Definições -->
+    <string name="settings_title">Definições</string>
+    <string name="settings_notifications">Notificações</string>
+    <string name="settings_notifications_switch">Alertas no telemóvel</string>
+    <string name="settings_notifications_hint">Com a app fechada, o Android verifica novas notificações aproximadamente a cada 15 minutos (limite do sistema). Com a app aberta, a actualização é automática.</string>
+    <string name="settings_refresh_interval">Actualização automática nos ecrãs abertos</string>
+    <string name="settings_interval_15">15 s</string>
+    <string name="settings_interval_30">30 s</string>
+    <string name="settings_interval_60">60 s</string>
+    <string name="settings_saved">Preferência guardada.</string>
+    <string name="settings_security">Segurança</string>
+    <string name="settings_new_password">Nova palavra-passe</string>
+    <string name="settings_change_password">Alterar palavra-passe</string>
+    <string name="settings_password_changed">A palavra-passe foi alterada com sucesso.</string>
+    <string name="settings_data">Dados e privacidade</string>
+    <string name="settings_clear_player">Esquecer ID de jogador guardado</string>
+    <string name="settings_player_cleared">ID guardado removido.</string>
+    <string name="settings_clear_cache">Limpar fotografias temporárias</string>
+    <string name="settings_cache_cleared">%1$d ficheiro(s) temporário(s) removido(s).</string>
+    <string name="settings_delete_account">Eliminar conta</string>
+    <string name="settings_delete_message">Esta acção é permanente. Encomendas já concluídas são mantidas de forma anónima por motivos contabilísticos. Escreva ELIMINAR para confirmar.</string>
+    <string name="settings_delete_type">Escreva ELIMINAR para confirmar.</string>
+    <string name="settings_deleted">A sua conta foi eliminada.</string>
+    <string name="settings_version">Elite Shop · versão %1$s</string>
+
+    <!-- Legais -->
+    <string name="terms_title">Termos e Condições</string>
+    <string name="privacy_title">Política de Privacidade</string>
+    <string name="legal_source_remote">Versão publicada pela loja.</string>
+    <string name="legal_source_local">Versão incluída na app (modelo). A loja pode publicar uma versão actualizada no painel.</string>
+
+    <!-- Actualização obrigatória -->
+    <string name="update_required_title">Actualização necessária</string>
+    <string name="update_required_message">Esta versão da Elite Shop já não é suportada. Instale a versão mais recente para continuar.</string>
+
+    <!-- FAQ -->
+    <string-array name="faq_questions">
+        <item>Quanto tempo demora a recarga?</item>
+        <item>Onde encontro o meu ID Free Fire?</item>
+        <item>O meu comprovativo foi rejeitado. E agora?</item>
+        <item>Posso cancelar uma encomenda?</item>
+        <item>O que significa \"por encomenda\"?</item>
+        <item>Os meus dados de pagamento estão seguros?</item>
+    </string-array>
+    <string-array name="faq_answers">
+        <item>Depois de enviar o comprovativo, a equipa verifica o pagamento. Assim que for aprovado, a recarga é processada e recebe uma notificação quando estiver concluída.</item>
+        <item>Abra o Free Fire, toque na sua foto de perfil e copie o número (ID) que aparece por baixo do nome.</item>
+        <item>Veja o motivo indicado na encomenda e envie um novo comprovativo pela app. Se tiver dúvidas, contacte o suporte com o código da encomenda.</item>
+        <item>Sim, enquanto o pagamento não tiver sido enviado ou se tiver sido rejeitado. Depois disso, contacte o suporte.</item>
+        <item>São pacotes que não estão disponíveis de imediato. A equipa confirma o prazo de entrega depois de validar o pagamento.</item>
+        <item>A Elite Shop não recebe dados de cartão. Os comprovativos ficam num armazenamento privado acessível apenas a si e à equipa autorizada.</item>
+    </string-array>
+</resources>

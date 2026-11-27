@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/screen_padding">
+
+    <ImageView
+        android:id="@+id/splash_logo"
+        android:layout_width="132dp"
+        android:layout_height="132dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_logo" />
+
+    <TextView
+        android:id="@+id/splash_title"
+        style="@style/Text.Display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:letterSpacing="0.25"
+        android:text="@string/app_name"
+        android:textSize="34sp" />
+
+    <TextView
+        android:id="@+id/splash_tagline"
+        style="@style/Text.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/splash_tagline" />
+
+    <ProgressBar
+        android:id="@+id/splash_progress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="40dp"
+        android:indeterminateTint="@color/ks_neon" />
+
+    <TextView
+        android:id="@+id/splash_error"
+        style="@style/Text.Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_error_box"
+        android:gravity="center"
+        android:padding="16dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/splash_retry"
+        style="@style/Button.Outline"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:text="@string/action_retry"
+        android:visibility="gone" />
+</LinearLayout>

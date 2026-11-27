@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Elite Shop Admin</title>
+</head>
+<body>
+  <div class="auth-page"><div class="spinner"></div></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script>
+    (async function () {
+      if (!KS.sb) { location.replace("login.html"); return; }
+      const { data } = await KS.sb.auth.getSession();
+      location.replace(data.session ? "dashboard.html" : "login.html");
+    })();
+  </script>
+</body>
+</html>

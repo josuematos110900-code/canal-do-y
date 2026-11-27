@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Dashboard · Elite Shop Admin</title>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content">
+        <section class="hero" style="margin-bottom:18px">
+          <div class="row">
+            <div class="grow">
+              <div class="small" style="letter-spacing:.15em;color:#d58bff;font-weight:700">VISÃO GERAL</div>
+              <h1 id="dash-hello" style="margin-top:4px">Olá</h1>
+              <div class="muted" style="color:#e6dcff">Encomendas e receita em tempo real.</div>
+            </div>
+            <a class="btn btn-outline" href="orders.html?filter=review" style="color:#fff;border-color:#fff">Rever comprovativos</a>
+          </div>
+        </section>
+        <div class="grid stats" id="dash-stats">
+          <div class="card stat"><div class="label">Por verificar</div><div class="value" id="st-review">—</div><div class="hint">comprovativos enviados / em verificação</div></div>
+          <div class="card stat"><div class="label">Por entregar</div><div class="value" id="st-fulfil">—</div><div class="hint">aprovadas / em processamento</div></div>
+          <div class="card stat"><div class="label">Encomendas hoje</div><div class="value" id="st-today">—</div><div class="hint" id="st-total">—</div></div>
+          <div class="card stat"><div class="label">Receita hoje</div><div class="value" id="st-rev-today">—</div><div class="hint">pagamentos aprovados</div></div>
+          <div class="card stat"><div class="label">Receita do mês</div><div class="value" id="st-rev-month">—</div><div class="hint">pagamentos aprovados</div></div>
+          <div class="card stat"><div class="label">Clientes</div><div class="value" id="st-customers">—</div><div class="hint">contas registadas</div></div>
+        </div>
+        <div class="grid two" style="margin-top:16px">
+          <div class="card">
+            <div class="card-header"><h2>Últimos 7 dias</h2><span class="muted small">receita aprovada</span></div>
+            <div class="bars" id="dash-chart"></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h2>Por estado</h2></div>
+            <div id="dash-status" class="stack"></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-header"><h2>Encomendas recentes</h2><a class="btn btn-sm btn-outline" href="orders.html">Ver todas</a></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Código</th><th>Cliente</th><th>Produto</th><th>ID jogador</th><th class="right">Total</th><th>Estado</th><th>Data</th></tr></thead>
+            <tbody id="dash-recent"><tr><td colspan="7" class="empty"><span class="spinner"></span></td></tr></tbody>
+          </table></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div id="toast-root"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

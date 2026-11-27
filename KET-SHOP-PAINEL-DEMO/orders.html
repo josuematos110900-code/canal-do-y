@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Encomendas · Elite Shop Admin</title>
+</head>
+<body><div style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:linear-gradient(90deg,#6a1bcf,#ff4fd8);color:#fff;text-align:center;font:600 12px system-ui;padding:6px">DEMONSTRAÇÃO — dados de exemplo · as alterações não são guardadas</div>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content">
+        <div class="card">
+          <div class="tabs" id="order-tabs">
+            <button class="tab active" data-filter="all">Todas</button>
+            <button class="tab" data-filter="review">Por verificar</button>
+            <button class="tab" data-filter="fulfil">Por entregar</button>
+            <button class="tab" data-filter="pending_payment">Pendentes de pagamento</button>
+            <button class="tab" data-filter="payment_rejected">Rejeitadas</button>
+            <button class="tab" data-filter="completed">Concluídas</button>
+            <button class="tab" data-filter="cancelled">Canceladas</button>
+          </div>
+          <div class="toolbar">
+            <div class="search"><label for="order-search">Pesquisar</label><input id="order-search" placeholder="Código ELT-…, ID do jogador ou nickname"></div>
+            <div><label for="order-from">De</label><input type="date" id="order-from"></div>
+            <div><label for="order-to">Até</label><input type="date" id="order-to"></div>
+            <button class="btn btn-outline" id="order-refresh">Actualizar</button>
+            <button class="btn btn-ghost" id="order-export">Exportar CSV</button>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Código</th><th>Cliente</th><th>Produto</th><th>ID jogador</th><th>Pagamento</th><th class="right">Total</th><th>Estado</th><th>Data</th></tr></thead>
+            <tbody id="orders-body"><tr><td colspan="8" class="empty"><span class="spinner"></span></td></tr></tbody>
+          </table></div>
+          <div class="row" style="margin-top:12px">
+            <span class="muted small grow" id="orders-count"></span>
+            <button class="btn btn-sm btn-ghost" id="orders-prev">Anterior</button>
+            <button class="btn btn-sm btn-ghost" id="orders-next">Seguinte</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div id="toast-root"></div>
+  <script src="js/demo-supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>

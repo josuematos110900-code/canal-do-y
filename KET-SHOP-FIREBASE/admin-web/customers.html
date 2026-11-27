@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Clientes · KET SHOP Admin</title>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content">
+        <div class="card">
+          <div class="toolbar">
+            <div class="search"><label for="cust-search">Pesquisar</label><input id="cust-search" placeholder="Nome, e-mail, telefone ou ID de jogador"></div>
+            <div><label for="cust-filter">Filtro</label><select id="cust-filter">
+              <option value="">Todos</option><option value="blocked">Bloqueados</option><option value="staff">Equipa (admin/operador)</option></select></div>
+            <button class="btn btn-ghost" id="cust-export">Exportar CSV</button>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Cliente</th><th>Contacto</th><th>Papéis</th><th class="right">Encomendas</th><th class="right">Total gasto</th><th>Última encomenda</th><th>Estado</th><th></th></tr></thead>
+            <tbody id="cust-body"><tr><td colspan="8" class="empty"><span class="spinner"></span></td></tr></tbody>
+          </table></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div id="toast-root"></div>
+  <script src="js/config.js"></script>
+  <script type="module" src="js/customers.js"></script>
+</body>
+</html>

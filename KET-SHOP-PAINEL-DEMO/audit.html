@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060b">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/admin.css">
+  <title>Auditoria · Elite Shop Admin</title>
+</head>
+<body><div style="position:fixed;left:0;right:0;bottom:0;z-index:90;background:linear-gradient(90deg,#6a1bcf,#ff4fd8);color:#fff;text-align:center;font:600 12px system-ui;padding:6px">DEMONSTRAÇÃO — dados de exemplo · as alterações não são guardadas</div>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação"></aside>
+    <div class="main">
+      <header class="topbar" id="topbar"></header>
+      <main class="content">
+        <div class="card">
+          <div class="toolbar">
+            <div><label for="aud-entity">Entidade</label><select id="aud-entity">
+              <option value="">Todas</option><option value="orders">Encomendas</option><option value="products">Produtos</option>
+              <option value="product_categories">Categorias</option><option value="payment_methods">Métodos de pagamento</option>
+              <option value="app_settings">Configurações</option><option value="user_roles">Papéis</option>
+              <option value="profiles">Clientes</option><option value="notifications">Notificações</option></select></div>
+            <div class="search"><label for="aud-search">Acção contém</label><input id="aud-search" placeholder="ex.: status_changed, update, blocked"></div>
+            <button class="btn btn-outline" id="aud-refresh">Actualizar</button>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Data</th><th>Utilizador</th><th>Acção</th><th>Entidade</th><th>ID</th><th></th></tr></thead>
+            <tbody id="aud-body"><tr><td colspan="6" class="empty"><span class="spinner"></span></td></tr></tbody>
+          </table></div>
+          <div class="row" style="margin-top:12px"><span class="grow"></span><button class="btn btn-sm btn-ghost" id="aud-more">Carregar mais</button></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div id="toast-root"></div>
+  <script src="js/demo-supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/audit.js"></script>
+</body>
+</html>
